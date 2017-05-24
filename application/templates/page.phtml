@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="msapplication-TileColor" content="#ffffff"/>
+		<meta name="msapplication-TileImage" content="/mstile-144x144.png"/>
+		<title><?= $this->model->getPageCaption(); ?></title>
+		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+		<link rel="icon" type="image/png" href="/favicon.png" sizes="32x32"/>
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+		<link rel="stylesheet" href="/css/screen.css" media="screen"/>
+	</head>
+	<body>
+		<section>
+<?php
+$page_name = $this->model->getPageName();
+if ($page_name == 'not-found' || $page_name == 'access-denied') {
+	echo '<h1>'.$this->model->getPageCaption().'</h1>';
+}
+
+$articles = $this->model->getArticles();
+foreach($articles as $article) {
+	echo '			<section>';
+	echo '				<header>';
+	echo '					<h1>'.$article->getCaption().'</h1>';
+	echo '				</header>';
+	echo '				<img src="'.$article->getImage().'" width="100%">';
+	echo '				<p>'.$article->getDescription().'</p>';
+	echo '				<a href="'.$article->getLink().'">Teleport</a>';
+	echo '			</section>';
+}
+?>
+		</section>
+	</body>
+</html>
