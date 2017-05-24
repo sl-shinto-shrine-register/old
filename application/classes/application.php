@@ -28,7 +28,7 @@ class Application
 	{
 		$this->model = new Page(new Database(DATABASE_HOST, DATABASE_PORT, DATABASE_DB, DATABASE_CHARSET, DATABASE_USER, DATABASE_PASS));
 		$this->view = new View($this->model);
-		$this->controller = new Controller($this->model, new Request());
+		$this->controller = new Controller($this->model, new Request(), DEFAULT_PAGE);
 	}
 
 	/**
