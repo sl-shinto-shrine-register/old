@@ -38,13 +38,15 @@ class Database
 	 * Creates a new class instance
 	 *
 	 * @param string $host Database host
+	 * @param int $port Database port
+	 * @param string $database Database
+	 * @param string $charset Character set
 	 * @param string $user Database user
 	 * @param string $password Database password
-	 * @param string $database Database
 	 */
-	public function __construct($host, $user, $password, $database)
+	public function __construct($host, $port, $database, $charset, $user, $password)
 	{
-		$dsn = 'mysql:host='.$host.';dbname='.$database.';charset=utf8';
+		$dsn = 'mysql:host='.$host.';port='.$port.';dbname='.$database.';charset='.$charset;
 		$this->pdo = new PDO($dsn, $user, $password);
 	}
 
