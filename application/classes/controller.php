@@ -17,20 +17,20 @@ class Controller
 	/**
 	 * @var string Default page
 	 */
-	private $default_page;
+	private $default;
 
     /**
      * Creates a new class instance
 	 *
 	 * @param Model $model Instance of model
 	 * @param Request $request Instance of request
-	 * @param string $default_page Default page
+	 * @param string $default Default page
      */
-	public function __construct(Model $model, Request $request, $default_page)
+	public function __construct(Model $model, Request $request, $default)
 	{
 		$this->model = $model;
 		$this->request = $request;
-		$this->default_page = $default_page;
+		$this->default = $default;
 	}
 
 	/**
@@ -40,7 +40,7 @@ class Controller
 	{
 		$route = explode('/', $this->request->getPath());
 		if (empty($route[1])) {
-			header('Location: http://'.$_SERVER['SERVER_NAME'].'/'.$this->default_page.'?client='.$this->request->getVariable('client'));
+			header('Location: http://'.$_SERVER['SERVER_NAME'].'/'.$this->default.'?client='.$this->request->getVariable('client'));
 		} else {
 			$page = $this->model->load($route[1], $this->request->getVariable('client'));
 			if ($page > 0) {
