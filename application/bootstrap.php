@@ -20,11 +20,6 @@ if (version_compare(PHP_VERSION, '5.4.0') < 0) {
 define('BASE_DIRECTORY', dirname(__FILE__));
 
 /**
- * Include config
- */
-include BASE_DIRECTORY.'/config.php';
-
-/**
  * Set class autoloading
  */
 set_include_path(get_include_path().PATH_SEPARATOR.BASE_DIRECTORY.'/classes');

@@ -1,24 +1,17 @@
 <?php
-/**
- * Error handling
- */
-const DEBUG = TRUE;
-const WEBMASTER_NAME = 'Vivien Richter';
-const WEBMASTER_MAIL = 'chri_ri@hotmail.de';
-const PROJECT_NAME = 'SL Shrine list';
+return array(
+'debug' => TRUE,
+'webmaster' => 'Vivien Richter',
+'webmaster_email' => 'chri_ri@hotmail.de',
+'project_name' => 'SL Shrine list',
 
-/**
- * Database connection
- */
-const DATABASE_HOST = 'localhost';
-const DATABASE_PORT = 3306;
-const DATABASE_DB = 'slsr';
-const DATABASE_CHARSET = 'utf8';
-const DATABASE_USER = 'root';
-const DATABASE_PASS = '1234';
+'database_host' => 'localhost',
+'database_port' => 3306,
+'database_db' => 'slsr',
+'database_charset' => 'utf8',
+'database_user' => 'root',
+'database_password' => '1234',
 
-/**
- * Pages
- */
-const DEFAULT_PAGE = 'random';
+'default_page' => 'random'
+);
 ?>
