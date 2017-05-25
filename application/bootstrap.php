@@ -25,11 +25,6 @@ define('BASE_DIRECTORY', dirname(__FILE__));
 include BASE_DIRECTORY.'/config.php';
 
 /**
- * Include error and exception handling
- */
-include BASE_DIRECTORY.'/error.php';
-
-/**
  * Set class autoloading
  */
 set_include_path(get_include_path().PATH_SEPARATOR.BASE_DIRECTORY.'/classes');
