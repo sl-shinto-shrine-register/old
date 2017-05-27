@@ -167,9 +167,12 @@
 	 */
 	private function sendReport($report)
 	{
-		$header = "MIME-Version: 1.0\r\n";
-		$header .= "Content-Type: text/html; charset=UTF-8\r\n";
-		mail($this->webmater.' <'.$this->webmasterEmail.'>', 'Error in '.$this->project, $report, $header);
+		$mail = new Mail(
+			$this->webmater.' <'.$this->webmasterEmail.'>', 
+			'Error in '.$this->project, 
+			$report
+		);
+		$mail->send();
 	}
 }
 ?>
