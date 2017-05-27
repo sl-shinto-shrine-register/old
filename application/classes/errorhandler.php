@@ -94,25 +94,52 @@
 			$this->line = func_get_arg(3);
 			$this->context = func_get_arg(4);
 		}
+		// Generate report
+		$report = $this->generateReport(
+			$this->errorCode, 
+			$this->errorMessage, 
+			$this->filename, 
+			$this->line, 
+			$this->context, 
+			$this->charset
+		);
+		// Display or send report
 		if ($this->debug) {
-			die($this->generateReport());
+			die($report);
 		} else {
-			$this->sendReport($this->generateReport());
-			die($this->generateUserMessage());
+			$this->sendReport(
+				$this->webmater.' <'.$this->webmasterEmail.'>', 
+				'Error in '.$this->project, 
+				$report, 
+				$this->charset
+			);
+			die(
+				$this->generateUserMessage(
+					$this->webmasterEmail, 
+					$this->charset
+				)
+			);
 		}
 	}
 	
 	/**
 	 * Generate error report
 	 * 
+	 * @param mixed $errorCode Error code
+	 * @param string $errorMessage Error message
+	 * @param string $filename Filename
+	 * @param int $line Line number
+	 * @param array $context Context
+	 * @param string $charset Character set (default: utf-8)
+	 * 
 	 * @return string Error report
 	 */
-	private function generateReport()
+	private function generateReport($errorCode, $errorMessage, $filename, $line, $context, $charset = "utf-8")
 	{
 		return '<!DOCTYPE html>
 <html lang="en">
  <head>
-  <meta http-equiv="Content-Type" content="text/html; charset='.$this->charset.'"/>
+  <meta http-equiv="Content-Type" content="text/html; charset='.$charset.'"/>
   <title>Error</title>
  </head>
  <body>
@@ -122,23 +149,23 @@
   <table>
     <tr>
       <th>Level</th>
-      <td>'.$this->errorCode.'</td>
+      <td>'.$errorCode.'</td>
     </tr>
     <tr>
       <th>Message</th>
-      <td>'.$this->errorMessage.'</td>
+      <td>'.$errorMessage.'</td>
     </tr>
     <tr>
       <th>File</th>
-      <td>'.$this->filename.'</td>
+      <td>'.$filename.'</td>
     </tr>
     <tr>
       <th>Line</th>
-      <td>'.$this->line.'</td>
+      <td>'.$line.'</td>
     </tr>
     <tr>
       <th>Context</th>
-      <td>'.var_export($this->context, TRUE).'</td>
+      <td>'.var_export($context, TRUE).'</td>
     </tr>
   </table>
  </body>
@@ -148,21 +175,24 @@
 	/**
 	 * Generate error message for the user
 	 * 
+	 * @param string $webmasterEmail Webmaster email address
+	 * @param string $charset Character set (default: utf-8)
+	 * 
 	 * @return string User message
 	 */
-	private function generateUserMessage()
+	private function generateUserMessage($webmasterEmail, $charset = "utf-8")
 	{
 		return '<!DOCTYPE html>
 <html lang="en">
  <head>
-  <meta http-equiv="Content-Type" content="text/html; charset='.$this->charset.'"/>
+  <meta http-equiv="Content-Type" content="text/html; charset='.$charset.'"/>
   <title>Error</title>
  </head>
  <body>
   <header>
    <h1>An error occured.</h1>
   </header>
-  <p>I am sorry for the inconvenience. I have been notified and will correct this issue as quickly as possible. For further information, please contact me at <a href="mailto:'.$this->webmasterEmail.'">'.$this->webmasterEmail.'</a>.</p>
+  <p>I am sorry for the inconvenience. I have been notified and will correct this issue as quickly as possible. For further information, please contact me at <a href="mailto:'.$webmasterEmail.'">'.$webmasterEmail.'</a>.</p>
  </body>
 </html>';
 	}
@@ -170,17 +200,22 @@
 	/**
 	 * Send report as eMail
 	 * 
+	 * @param string $recipients Recipient(s) (must comply with RFC 2822)
+	 * @param string $subject Subject
 	 * @param string $report Error report
+	 * @param string $charset Character set (default: utf-8)
+	 * 
+	 * @return bool Returns TRUE if the mail was successfully accepted for delivery, FALSE otherwise.
 	 */
-	private function sendReport($report)
+	private function sendReport($recipients, $subject, $report, $charset = "utf-8")
 	{
 		$mail = new Mail(
-			$this->webmater.' <'.$this->webmasterEmail.'>', 
-			'Error in '.$this->project, 
+			$recipients, 
+			$subject, 
 			$report, 
-			$this->charset
+			$charset
 		);
-		$mail->send();
+		return $mail->send();
 	}
 }
 ?>
