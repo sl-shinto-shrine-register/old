@@ -43,7 +43,8 @@ class Application
 			$this->configuration->get('debug'), 
 			$this->configuration->get('webmaster'), 
 			$this->configuration->get('webmaster_email'), 
-			$this->configuration->get('project_name')
+			$this->configuration->get('project_name'), 
+			$this->configuration->get('charset')
 		);
 		$this->model = new Page(
 			new Database(
@@ -56,7 +57,8 @@ class Application
 			)
 		);
 		$this->view = new View(
-			$this->model
+			$this->model, 
+			$this->configuration->get('charset')
 		);
 		$this->controller = new Controller(
 			$this->model, 

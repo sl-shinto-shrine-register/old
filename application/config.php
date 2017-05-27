@@ -12,6 +12,7 @@ return array(
 'database_user' => 'root',
 'database_password' => '1234',
 
-'default_page' => 'random'
+'default_page' => 'random',
+'charset' => 'utf-8'
 );
 ?>

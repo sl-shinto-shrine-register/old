@@ -49,6 +49,11 @@
 	 */
 	private $context;
 	
+	/**
+	 * @var string Character set
+	 */
+	private $charset;
+	
  	/**
 	 * Creates a new class instance
 	 * 
@@ -56,13 +61,15 @@
 	 * @param string $webmaster Webmaster name
 	 * @param string $webmasterEmail Webmaster email address
 	 * @param string $project Project name
+	 * @param string $charset Character set
 	 */
- 	public function __construct($debug, $webmaster, $webmasterEmail, $project)
+ 	public function __construct($debug, $webmaster, $webmasterEmail, $project, $charset = "utf-8")
 	{
 		$this->debug = $debug;
 		$this->webmater = $webmaster;
 		$this->webmasterEmail = $webmasterEmail;
 		$this->project = $project;
+		$this->charset = $charset;
 		set_error_handler(array($this, 'catchError'));
 		set_exception_handler(array($this, 'catchError'));
 	}
@@ -105,7 +112,7 @@
 		return '<!DOCTYPE html>
 <html lang="en">
  <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="Content-Type" content="text/html; charset='.$this->charset.'"/>
   <title>Error</title>
  </head>
  <body>
@@ -148,7 +155,7 @@
 		return '<!DOCTYPE html>
 <html lang="en">
  <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="Content-Type" content="text/html; charset='.$this->charset.'"/>
   <title>Error</title>
  </head>
  <body>
@@ -170,7 +177,8 @@
 		$mail = new Mail(
 			$this->webmater.' <'.$this->webmasterEmail.'>', 
 			'Error in '.$this->project, 
-			$report
+			$report, 
+			$this->charset
 		);
 		$mail->send();
 	}
