@@ -87,7 +87,7 @@
 			$this->line = func_get_arg(3);
 			$this->context = func_get_arg(4);
 		}
-		if (DEBUG) {
+		if ($this->debug) {
 			die($this->generateReport());
 		} else {
 			$this->sendReport($this->generateReport());
