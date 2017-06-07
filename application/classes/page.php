@@ -7,13 +7,23 @@ class Page extends Model
 	/**
 	 * @var string Page name
 	 */
-	private $name = '';
+	private $name;
 
 	/**
 	 * @var string Page caption
 	 */
-	private $caption = '';
-
+	private $caption;
+	
+	/**
+	 * @var string Page content
+	 */
+	private $content;
+	
+	/**
+	 * @var string Page type
+	 */
+	private $type;
+	
 	/**
 	 * @var array Articles, listed on the page
 	 */
@@ -29,11 +39,14 @@ class Page extends Model
 	 */
 	public function load($name, $client_id)
 	{
-		if ($this->loadPrivilegues($client_id) || $name == 'not-found' || $name == 'access-denied') {
+		$statement = $this->database->prepare('SELECT name FROM pages WHERE type = 1 OR type = 2');
+		$statement->execute();
+		$exception = $statement->fetchAll(PDO::FETCH_COLUMN, 0);
+		if ($this->loadPrivilegues($client_id) || in_array($name, $exception)) {
 			if ($name == 'random') {
-				$statement = $this->database->prepare('SELECT id, name, caption FROM pages WHERE id NOT IN (8, 9) ORDER BY rand() LIMIT 1');
+				$statement = $this->database->prepare('SELECT id, name, caption, content, type FROM pages WHERE type = 3 ORDER BY rand() LIMIT 1');
 			} else {
-				$statement = $this->database->prepare('SELECT id, name, caption FROM pages WHERE name = :name');
+				$statement = $this->database->prepare('SELECT id, name, caption, content, type FROM pages WHERE name = :name');
 				$statement->bindValue(':name', $name, Database::TYPE_STR);
 			}
 			$statement->execute();
@@ -44,6 +57,8 @@ class Page extends Model
 				$this->id = $result['id'];
 				$this->name = $result['name'];
 				$this->caption = $result['caption'];
+				$this->content = $result['content'];
+				$this->type = $result['type'];
 				$this->loadArticles();
 				return 0;
 			}
@@ -111,7 +126,27 @@ class Page extends Model
 	{
 		return $this->caption;
 	}
-
+	
+	/**
+	 * Get page content
+	 * 
+	 * @return string Page content
+	 */
+	public function getPageContent()
+	{
+		return $this->content;
+	}
+	
+	/**
+	 * Get page type
+	 * 
+	 * @return string Page type
+	 */
+	public function getPageType()
+	{
+		return $this->type;
+	}
+	
 	/**
 	 * Get articles, listed on the page
 	 *

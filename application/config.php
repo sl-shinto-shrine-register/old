@@ -12,7 +12,8 @@ return array(
 'database_user' => 'root',
 'database_password' => '1234',
 
-'default_page' => 'random',
+'default_client_page' => 'random',
+'default_web_page' => 'about',
 'charset' => 'utf-8'
 );
 ?>

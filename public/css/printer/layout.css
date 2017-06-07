@@ -1,0 +1,14 @@
+h1 {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+nav, footer, a {
+  display: none;
+}
+
+#footer {
+  display: block;
+  margin-top: 2em;
+  text-align: center;
+}

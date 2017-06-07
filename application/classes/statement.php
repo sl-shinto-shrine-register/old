@@ -50,7 +50,17 @@ class Statement
 	 */
 	public function fetch()
 	{
-		return $this->statement->fetch();
+		return call_user_func_array(array($this->statement, 'fetch'), func_get_args());
+	}
+	
+	/**
+	 * Returns an array containing all of the result set rows
+	 * 
+	 * @return Returns an array containing all of the remaining rows in the result set. An empty array is returned if there are zero results to fetch, or FALSE on failure. 
+	 */
+	public function fetchAll()
+	{
+		return call_user_func_array(array($this->statement, 'fetchAll'), func_get_args());
 	}
 }
 ?>

@@ -63,7 +63,8 @@ class Application
 		$this->controller = new Controller(
 			$this->model, 
 			new Request(), 
-			$this->configuration->get('default_page')
+			$this->configuration->get('default_client_page'), 
+			$this->configuration->get('default_web_page')
 		);
 	}
 

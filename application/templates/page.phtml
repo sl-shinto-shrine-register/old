@@ -1,35 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=<?= $this->charset ?>"/>
-		<meta name="msapplication-TileColor" content="#ffffff"/>
-		<meta name="msapplication-TileImage" content="/mstile-144x144.png"/>
-		<title><?= $this->model->getPageCaption(); ?></title>
-		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
-		<link rel="icon" type="image/png" href="/favicon.png" sizes="32x32"/>
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-		<link rel="stylesheet" href="/css/screen.css" media="screen"/>
-	</head>
-	<body>
-		<section>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=<?= $this->charset ?>"/>
+  <meta name="msapplication-TileColor" content="#ffffff"/>
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png"/>
 <?php
-$page_name = $this->model->getPageName();
-if ($page_name == 'not-found' || $page_name == 'access-denied') {
-	echo '<h1>'.$this->model->getPageCaption().'</h1>';
-}
-
-$articles = $this->model->getArticles();
-foreach($articles as $article) {
-	echo '			<section>';
-	echo '				<header>';
-	echo '					<h1>'.$article->getCaption().'</h1>';
-	echo '				</header>';
-	echo '				<img src="'.$article->getImage().'" width="100%">';
-	echo '				<p>'.$article->getDescription().'</p>';
-	echo '				<a href="'.$article->getLink().'">Teleport</a>';
-	echo '			</section>';
+$pageType = $this->model->getPageType();
+if ($pageType == 2) {
+	echo '  <title>SL Shinto shrine register</title>';
+} else {
+	echo '  <title>'.$this->model->getPageCaption().'</title>';
 }
 ?>
-		</section>
-	</body>
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+  <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+  <link rel="stylesheet" href="/css/markers.css" media="all"/>
+  <link rel="stylesheet" href="/css/common.css" media="all"/>
+<?php
+if ($pageType == 2) {
+// For the screen
+	echo '  <link rel="stylesheet" href="/css/screen/layout.css" media="screen"/>
+  <link rel="stylesheet" href="/css/screen/design.css" media="screen"/>
+  <link rel="stylesheet" href="/css/printer/layout.css" media="print"/>
+  <link rel="stylesheet" href="/css/printer/design.css" media="print"/>
+  <script src="js/portrait_menu.js"></script>
+ </head>
+ <body onLoad="portraitMenuButton();" onResize="portraitMenuButton();">
+  <header>
+   <img src="/img/Shinto_torii_vermillion.svg.png">
+   <h1>SL Shinto shrine register</h1>
+  </header>
+  <nav id="nav">
+   <ul>';
+echo ($this->model->getPageName() == 'about') ? '    <li id="active"><a href="../about"><em>About</em></a>'."</li>\n" : '    <li><a href="../about">About</a>'."</li>\n";
+echo ($this->model->getPageName() == 'imprint') ? '    <li id="active"><a href="../imprint"><em>Imprint</em></a>'."</li>\n" : '    <li><a href="../imprint">Imprint</a>'."</li>\n";
+echo '   </ul>
+  </nav>
+  <main>
+   <section>
+    <header>
+     <h2>'.$this->model->getPageCaption().'</h2>
+    </header>
+    '.$this->model->getPageContent().'
+   </section>
+   <a id="nav_link" href="#nav">Scroll to the navigation bar</a>
+  </main>
+  <footer id="footer">
+   <p>Last change: 07. June 2017</p>
+  </footer>';
+} else {
+// For the client
+	echo '  <link rel="stylesheet" href="/css/client/layout.css" media="screen"/>
+  <link rel="stylesheet" href="/css/client/design.css" media="screen"/>
+ </head>
+ <body>
+  <section>
+   <header>
+    <h1>'.$this->model->getPageCaption().'</h1>
+   </header>
+   '.$this->model->getPageContent();
+
+	$articles = $this->model->getArticles();
+	if (!empty($articles)) {
+		foreach($articles as $article) {
+			echo '   <article>';
+			echo '    <header>';
+			echo '     <h1>'.$article->getCaption().'</h1>';
+			echo '    </header>';
+			echo '    <img src="'.$article->getImage().'" width="100%">';
+			echo '    <p>'.$article->getDescription().'</p>';
+			echo '    <a href="'.$article->getLink().'">Teleport</a>';
+			echo '   </article>';
+		}
+	}
+	echo '  </section>';
+}
+?>
+ </body>
 </html>

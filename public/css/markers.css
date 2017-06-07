@@ -1,0 +1,12 @@
+em {
+  font-style: normal;
+  font-weight: bold;
+}
+
+.marker_green {
+	color: green;
+}
+
+.marker_red {
+	color: red;
+}
