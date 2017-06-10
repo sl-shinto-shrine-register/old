@@ -2,7 +2,6 @@
 
 body > header {
     display: table;
-    border: solid black;
 }
 body > header > img {
     display: table-cell;
@@ -43,6 +42,7 @@ main h2 {
 
 main h3 {
 	margin-top: 1em;
+	margin-bottom: 0.5em;
 }
 
 main {
@@ -70,7 +70,6 @@ main ul {
 
 #table-provider {
   text-align: left;
-  margin-top: 0.5em;
   margin-bottom: 2em;
 }
 
@@ -85,15 +84,21 @@ main ul {
 }
 
 #table-sources {
-  margin-top: 0.5em;
+  margin-bottom: 2em;
 }
 
 #table-sources th {
-  padding: 0.5em;
+  padding: 0.25em;
 }
 
 #table-sources td {
-  padding: 1em;
+  padding: 0.5em;
+}
+
+.badge {
+  height: 1.5em;
+  margin-right: 3em;
+  margin-bottom: 2em;
 }
 
 #nav_link {
@@ -145,7 +150,7 @@ main ul {
     display: none;
 	position: fixed;
     float: none;
-    top: 9.5em;
+    top: 9.25em;
 	right: 0em;
     width: 15em;
   }

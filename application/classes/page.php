@@ -13,6 +13,11 @@ class Page extends Model
 	 * @var string Page caption
 	 */
 	private $caption;
+
+	/**
+	 * @var string Page title
+	 */
+	private $title;
 	
 	/**
 	 * @var string Page content
@@ -44,9 +49,9 @@ class Page extends Model
 		$exception = $statement->fetchAll(PDO::FETCH_COLUMN, 0);
 		if ($this->loadPrivilegues($client_id) || in_array($name, $exception)) {
 			if ($name == 'random') {
-				$statement = $this->database->prepare('SELECT id, name, caption, content, type FROM pages WHERE type = 3 ORDER BY rand() LIMIT 1');
+				$statement = $this->database->prepare('SELECT id, name, caption, title, content, type FROM pages WHERE type = 3 ORDER BY rand() LIMIT 1');
 			} else {
-				$statement = $this->database->prepare('SELECT id, name, caption, content, type FROM pages WHERE name = :name');
+				$statement = $this->database->prepare('SELECT id, name, caption, title, content, type FROM pages WHERE name = :name');
 				$statement->bindValue(':name', $name, Database::TYPE_STR);
 			}
 			$statement->execute();
@@ -57,6 +62,7 @@ class Page extends Model
 				$this->id = $result['id'];
 				$this->name = $result['name'];
 				$this->caption = $result['caption'];
+				$this->title = $result['title'];
 				$this->content = $result['content'];
 				$this->type = $result['type'];
 				$this->loadArticles();
@@ -125,6 +131,16 @@ class Page extends Model
 	public function getPageCaption()
 	{
 		return $this->caption;
+	}
+
+	/**
+	 * Get page title
+	 *
+	 * @return string Page title
+	 */
+	public function getPageTitle()
+	{
+		return $this->title;
 	}
 	
 	/**

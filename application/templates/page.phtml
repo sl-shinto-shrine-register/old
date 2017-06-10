@@ -4,20 +4,17 @@
   <meta http-equiv="Content-Type" content="text/html; charset=<?= $this->charset ?>"/>
   <meta name="msapplication-TileColor" content="#ffffff"/>
   <meta name="msapplication-TileImage" content="/mstile-144x144.png"/>
-<?php
-$pageType = $this->model->getPageType();
-if ($pageType == 2) {
-	echo '  <title>SL Shinto shrine register</title>';
-} else {
-	echo '  <title>'.$this->model->getPageCaption().'</title>';
-}
-?>
+  <meta name="author" content="Vivien Richter"/>
+  <meta name="description" content="The Second Life Shinto Shrine Register (SLSR) is a association of Shinto shrines in Second Life."/>
+  <meta name="keywords" content="Second Life, SL, Shinto, shrine register, board"/>
+  <title><?= $this->model->getPageTitle() ?></title>
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
   <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32"/>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
   <link rel="stylesheet" href="/css/markers.css" media="all"/>
   <link rel="stylesheet" href="/css/common.css" media="all"/>
 <?php
+$pageType = $this->model->getPageType();
 if ($pageType == 2) {
 // For the screen
 	echo '  <link rel="stylesheet" href="/css/screen/layout.css" media="screen"/>
@@ -28,7 +25,7 @@ if ($pageType == 2) {
  </head>
  <body onLoad="portraitMenuButton();" onResize="portraitMenuButton();">
   <header>
-   <img src="/img/Shinto_torii_vermillion.svg.png">
+   <img src="/img/Shinto_torii_vermillion.svg.png" alt="Red hachiman torii"/>
    <h1>SL Shinto shrine register</h1>
   </header>
   <nav id="nav">
@@ -47,7 +44,7 @@ echo '   </ul>
    <a id="nav_link" href="#nav">Scroll to the navigation bar</a>
   </main>
   <footer id="footer">
-   <p>Last change: 07. June 2017</p>
+   <p>Last change: 10. June 2017</p>
   </footer>';
 } else {
 // For the client

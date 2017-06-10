@@ -13,7 +13,6 @@ body > header {
   background-image: url("/img/Banner.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  border: solid black;
 }
 
 h1 {
@@ -84,7 +83,7 @@ main {
 
 @media screen and (orientation: portrait) {
   #portrait-menu-button > div {
-  background-color: #7F5417;
+    background-color: #7F5417;
   }
 
   nav {
