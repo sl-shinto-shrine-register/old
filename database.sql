@@ -78,7 +78,7 @@ CREATE TABLE `clients` (
   `owner` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `access` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,7 +87,7 @@ CREATE TABLE `clients` (
 
 LOCK TABLES `clients` WRITE;
 /*!40000 ALTER TABLE `clients` DISABLE KEYS */;
-INSERT INTO `clients` VALUES (1,'Demo','Vivien Lyne',1),(2,'Amaterasu Shrine Little Yoshiwara','Xuemei Yiyuan',1),(3,'Inari Shrine Little Yoshiwara','Xuemei Yiyuan',1),(4,'Benzaiten Shrine UUtopia','Pomona Writer',1),(5,'Okami Inari Shrine','Barren Huszar',1),(6,'Inaba no Shirousagi Public Shrine','Aucenille',1),(7,'Gion Kobu Hanamachi Karyukai Okiya Shrine','April Cordeaux',1),(8,'Starting point','Vivien Lyne',1);
+INSERT INTO `clients` VALUES (1,'Demo','Vivien Lyne',1),(2,'Amaterasu Shrine Little Yoshiwara','Xuemei Yiyuan',1),(3,'Inari Shrine Little Yoshiwara','Xuemei Yiyuan',1),(4,'Benzaiten Shrine UUtopia','Pomona Writer',1),(5,'Okami Inari Shrine','Barren Huszar',1),(6,'Inaba no Shirousagi Public Shrine','Aucenille',1),(7,'Gion Kobu Hanamachi Karyukai Okiya Shrine','April Cordeaux',1),(8,'Starting point','Vivien Lyne',1),(9,'Yasaka Shrine','Momoka 百花',1);
 /*!40000 ALTER TABLE `clients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,4 +128,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-17 21:56:54
+-- Dump completed on 2017-06-19  4:45:37
