@@ -56,7 +56,7 @@ class Statement
 	/**
 	 * Returns an array containing all of the result set rows
 	 * 
-	 * @return Returns an array containing all of the remaining rows in the result set. An empty array is returned if there are zero results to fetch, or FALSE on failure. 
+	 * @return array|bool Returns an array containing all of the remaining rows in the result set. An empty array is returned if there are zero results to fetch, or FALSE on failure. 
 	 */
 	public function fetchAll()
 	{

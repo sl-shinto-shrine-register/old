@@ -29,16 +29,21 @@ if ($pageType == 2) {
    <h1>SL Shinto shrine register</h1>
   </header>
   <nav id="nav">
-   <ul>';
-echo ($this->model->getPageName() == 'about') ? '    <li id="active"><a href="../about"><em>About</em></a>'."</li>\n" : '    <li><a href="../about">About</a>'."</li>\n";
-echo ($this->model->getPageName() == 'imprint') ? '    <li id="active"><a href="../imprint"><em>Imprint</em></a>'."</li>\n" : '    <li><a href="../imprint">Imprint</a>'."</li>\n";
+   <ul>
+';
+$pages = $this->model->getPageList(array(2));
+$currentPageID = $this->model->getPageID();
+foreach ($pages as $page) {
+	if ($currentPageID == $page['id']) {
+		echo '    <li id="active"><a href="../'.$page['route'].'"><em>'.$page['caption'].'</em></a>'."</li>\n";
+	} else {
+		echo '    <li><a href="../'.$page['route'].'">'.$page['caption'].'</a>'."</li>\n";
+	}
+}
 echo '   </ul>
   </nav>
   <main>
    <section>
-    <header>
-     <h2>'.$this->model->getPageCaption().'</h2>
-    </header>
     '.$this->model->getPageContent().'
    </section>
    <a id="nav_link" href="#nav">Scroll to the navigation bar</a>
@@ -53,17 +58,13 @@ echo '   </ul>
  </head>
  <body>
   <section>
-   <header>
-    <h1>'.$this->model->getPageCaption().'</h1>
-   </header>
    '.$this->model->getPageContent();
-
 	$articles = $this->model->getArticles();
 	if (!empty($articles)) {
 		foreach($articles as $article) {
 			echo '   <article>';
 			echo '    <header>';
-			echo '     <h1>'.$article->getCaption().'</h1>';
+			echo '     <h2>'.$article->getCaption().'</h2>';
 			echo '    </header>';
 			echo '    <img src="'.$article->getImage().'" width="100%">';
 			echo '    <p>'.$article->getDescription().'</p>';

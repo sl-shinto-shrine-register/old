@@ -5,11 +5,6 @@
 class Page extends Model
 {
 	/**
-	 * @var string Page name
-	 */
-	private $name;
-
-	/**
 	 * @var string Page caption
 	 */
 	private $caption;
@@ -49,9 +44,9 @@ class Page extends Model
 		$exception = $statement->fetchAll(PDO::FETCH_COLUMN, 0);
 		if ($this->loadPrivilegues($client_id) || in_array($name, $exception)) {
 			if ($name == 'random') {
-				$statement = $this->database->prepare('SELECT id, name, caption, title, content, type FROM pages WHERE type = 3 ORDER BY rand() LIMIT 1');
+				$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM pages WHERE type = 3 ORDER BY rand() LIMIT 1');
 			} else {
-				$statement = $this->database->prepare('SELECT id, name, caption, title, content, type FROM pages WHERE name = :name');
+				$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM pages WHERE name = :name');
 				$statement->bindValue(':name', $name, Database::TYPE_STR);
 			}
 			$statement->execute();
@@ -60,7 +55,6 @@ class Page extends Model
 				return 2;
 			} else {
 				$this->id = $result['id'];
-				$this->name = $result['name'];
 				$this->caption = $result['caption'];
 				$this->title = $result['title'];
 				$this->content = $result['content'];
@@ -114,13 +108,13 @@ class Page extends Model
 	}
 
 	/**
-	 * Get page name
+	 * Get page identifier
 	 *
-	 * @return string Page name
+	 * @return int Page identifier
 	 */
-	public function getPageName()
+	public function getPageID()
 	{
-		return $this->name;
+		return $this->id;
 	}
 
 	/**
@@ -172,5 +166,30 @@ class Page extends Model
 	{
 		return $this->articles;
 	}
+	
+	/**
+	 * Get list of pages
+	 * 
+	 * @param int[] $types Page types
+	 * 
+	 * @return array Returns an array, containing the IDs, captions and routes of the pages
+	 */
+	 public function getPageList(array $types = array())
+	 {
+	 	$pages = array();
+	 	if (empty($types)) {
+	 		$statement = $this->database->prepare('SELECT id, name, caption FROM pages');
+	 	} else {
+	 		$statement = $this->database->prepare('SELECT id, name, caption FROM pages WHERE type = '.implode(' OR type = ', $types));
+	 	}
+		$statement->execute();
+		while ($result = $statement->fetch()) {
+			$page['id'] = $result['id'];
+			$page['caption'] = $result['caption'];
+			$page['route'] = $result['name'];
+			$pages[] = $page;
+		}
+		return $pages;
+	 }
 }
 ?>

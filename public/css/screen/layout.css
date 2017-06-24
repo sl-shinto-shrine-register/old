@@ -101,6 +101,16 @@ main ul {
   margin-bottom: 2em;
 }
 
+#faq {
+	list-style-type: none;
+	margin-left: 0;
+}
+
+#faq span {
+	display: block;
+	margin-bottom: 1em;
+}
+
 #nav_link {
   display: none;
 }
