@@ -3,14 +3,14 @@
 body {
   color: #fff;
   background-color: #000;
-  background-image: url("/img/Background.jpg");
+  background-image: url("/images/Background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 body > header {
   background-color: #696969;
-  background-image: url("/img/Banner.jpg");
+  background-image: url("/images/Banner.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -21,7 +21,7 @@ h1 {
 
 nav ul li {
   background-color: #7F5417;
-  background-image: url("/img/Navigation_element_background.jpg");
+  background-image: url("/images/Navigation_element_background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: -0.5em 0 0.5em black, 0 0.5em 0.5em black, 0.5em 0 0.5em black, 0 -0.5em 0.5em black;
@@ -36,7 +36,7 @@ nav ul li a {
 nav ul #active, nav ul li:hover {
   font-weight: bold;
   background-color: #dd9b41;
-  background-image: url("/img/Navigation_element_active_background.jpg");
+  background-image: url("/images/Navigation_element_active_background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -48,9 +48,9 @@ a {
 
 main {
   background-color: #fff;
-  background-image: url("/img/Tatami.jpg");
+  background-image: url("/images/Tatami.jpg");
   border: 0.5em solid;
-  border-image: url("/img/Tatami_border.png") 45 45 45 45 repeat repeat;
+  border-image: url("/images/Tatami_border.png") 45 45 45 45 repeat repeat;
   color: #000;
 }
 
@@ -58,7 +58,7 @@ main {
   color: #fff;
   text-decoration: none;
   background-color: #dd9b41;
-  background-image: url("/img/Navigation_element_background.jpg");
+  background-image: url("/images/Navigation_element_background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   font-weight: bold;
@@ -67,7 +67,7 @@ main {
 }
 
 #join-group:hover {
-  background-image: url("/img/Navigation_element_active_background.jpg");
+  background-image: url("/images/Navigation_element_active_background.jpg");
 }
 
 #table-sources, #table-sources tr, #table-sources th, #table-sources td {
@@ -88,7 +88,7 @@ main {
 
   nav {
     background-color: #696969;
-    background-image: url("/img/Background.jpg");
+    background-image: url("/images/Background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
   }

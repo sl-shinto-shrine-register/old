@@ -1,4 +1,7 @@
 <?php
+
+use Image;
+
 /**
  * File class
  */
@@ -8,11 +11,6 @@ class Article extends Model
 	 * @var string Caption
 	 */
 	protected $caption = '';
-
-	/**
-	 * @var string Image
-	 */
-	private $image = '';
 
 	/**
 	 * @var string Description
@@ -33,7 +31,7 @@ class Article extends Model
 	 */
 	public function load($id)
 	{
-		$statement = $this->database->prepare('SELECT caption, image, description, link FROM articles WHERE id = :id');
+		$statement = $this->database->prepare('SELECT caption, description, link FROM articles WHERE id = :id');
 		$statement->bindValue(':id', $id, Database::TYPE_INT);
 		$statement->execute();
 		$result = $statement->fetch();
@@ -42,7 +40,6 @@ class Article extends Model
 		} else {
 			$this->id = $id;
 			$this->caption = $result['caption'];
-			$this->image = $result['image'];
 			$this->description = $result['description'];
 			$this->link = $result['link'];
 			return TRUE;
@@ -66,9 +63,22 @@ class Article extends Model
 	 */
 	public function getImage()
 	{
-		return 'img/'.$this->image;
+		// Get Filename
+		$filename = str_replace(' ', '_', $this->getCaption());
+		// Get paths
+		$frontendImageLink = 'images/shrines/small/'.$filename.'.jpg';
+		$sourceImagePath = BASE_DIRECTORY.'/../public/images/shrines/'.$filename.'.png';
+		$destinationImagePath = BASE_DIRECTORY.'/../public/'.$frontendImageLink;
+		// Check
+		if (!file_exists($destinationImagePath) && file_exists($sourceImagePath)) {
+			// Process
+			$image = Image::createFromFile($sourceImagePath);
+			$image->scale(960, 540);
+			$image->saveToFileAs($destinationImagePath, 'image/jpeg', 20);
+		}
+		return $frontendImageLink;
 	}
-
+	
 	/**
 	 * Get description
 	 *
