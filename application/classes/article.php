@@ -1,7 +1,5 @@
 <?php
 
-use Image;
-
 /**
  * File class
  */
@@ -74,7 +72,7 @@ class Article extends Model
 			// Process
 			$image = Image::createFromFile($sourceImagePath);
 			$image->scale(960, 540);
-			$image->saveToFileAs($destinationImagePath, 'image/jpeg', 20);
+			$image->saveToFileAs($destinationImagePath, Image::MIME_TYPE_JPEG, 20);
 		}
 		return $frontendImageLink;
 	}
