@@ -23,5 +23,15 @@ abstract class Model
 	{
 		$this->database = $database;
 	}
+	
+	/**
+	 * Get identifier
+	 *
+	 * @return int Identifier
+	 */
+	public function getID()
+	{
+		return $this->id;
+	}
 }
 ?>

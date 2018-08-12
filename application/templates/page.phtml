@@ -32,7 +32,7 @@ if ($pageType == 2) {
    <ul>
 ';
 $pages = $this->model->getPageList(array(2));
-$currentPageID = $this->model->getPageID();
+$currentPageID = $this->model->getID();
 foreach ($pages as $page) {
 	if ($currentPageID == $page['id']) {
 		echo '    <li id="active"><a href="../'.$page['route'].'"><em>'.$page['caption'].'</em></a>'."</li>\n";
@@ -64,7 +64,7 @@ echo '   </ul>
 		foreach($articles as $article) {
 			echo '   <article>';
 			echo '    <header>';
-			echo '     <h2>'.$article->getCaption().'</h2>';
+			echo '     <h2 id="shrine_'.$article->getID().'">'.$article->getCaption().'</h2>';
 			echo '    </header>';
 			echo '    <img src="'.$article->getImage().'" width="100%">';
 			echo '    <p>'.$article->getDescription().'</p>';

@@ -108,16 +108,6 @@ class Page extends Model
 	}
 
 	/**
-	 * Get page identifier
-	 *
-	 * @return int Page identifier
-	 */
-	public function getPageID()
-	{
-		return $this->id;
-	}
-
-	/**
 	 * Get page caption
 	 *
 	 * @return string Page caption
