@@ -33,38 +33,30 @@ class Page extends Model
 	 * Load page data
 	 *
 	 * @param string $name Page name
-	 * @param int $client_id Client identifier
-	 *
 	 * @return int '0' = OK; '1' = Access denied; '2' = not found
+	 * @return bool Returns TRUE, if the page exists. Otherwise FALSE.
 	 */
-	public function load($name, $client_id)
+	public function load($name)
 	{
-		$statement = $this->database->prepare('SELECT name FROM pages WHERE type = 1 OR type = 2');
-		$statement->execute();
-		$exception = $statement->fetchAll(PDO::FETCH_COLUMN, 0);
-		if ($this->loadPrivilegues($client_id) || in_array($name, $exception)) {
-			if ($name == 'random') {
-				$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM pages WHERE type = 3 ORDER BY rand() LIMIT 1');
-			} else {
-				$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM pages WHERE name = :name');
-				$statement->bindValue(':name', $name, Database::TYPE_STR);
-			}
-			$statement->execute();
-			$result = $statement->fetch();
-			if (empty($result)) {
-				return 2;
-			} else {
-				$this->id = $result['id'];
-				$this->caption = $result['caption'];
-				$this->title = $result['title'];
-				$this->content = $result['content'];
-				$this->type = $result['type'];
-				$this->loadArticles();
-				return 0;
-			}
+		if ($name == 'random') {
+			$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM pages WHERE type = 3 ORDER BY rand() LIMIT 1');
 		} else {
-			return 1;
+			$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM pages WHERE name = :name');
+			$statement->bindValue(':name', $name, Database::TYPE_STR);
 		}
+		$statement->execute();
+		$result = $statement->fetch();
+		if (empty($result)) {
+			// Page not found
+			return FALSE;
+		}
+		$this->id = $result['id'];
+		$this->caption = $result['caption'];
+		$this->title = $result['title'];
+		$this->content = $result['content'];
+		$this->type = $result['type'];
+		$this->loadArticles();
+		return TRUE;
 	}
 
 	/**
@@ -79,31 +71,6 @@ class Page extends Model
 			$article = new Article($this->database);
 			$article->load($result['article_id']);
 			$this->articles[] = $article;
-		}
-	}
-
-	/**
-	 * Load privilegues
-	 *
-	 * @param int $client_id Client identifier
-	 *
-	 * @return bool TRUE or FALSE
-	 */
-	protected function loadPrivilegues($client_id)
-	{
-		$statement = $this->database->prepare('SELECT COUNT(access) AS counted FROM clients WHERE id = :id AND access = :access');
-		$statement->bindValue(':id', $client_id, Database::TYPE_INT);
-		$statement->bindValue(':access', TRUE, Database::TYPE_BOOL);
-		$statement->execute();
-		$result = $statement->fetch();
-		if (empty($result)) {
-			return FALSE;
-		} else {
-			if ($result['counted'] > 0) {
-				return TRUE;
-			} else {
-				return FALSE;
-			}
 		}
 	}
 

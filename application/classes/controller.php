@@ -45,27 +45,19 @@ class Controller
 	 */
 	public function updatePage()
 	{
+		// Parse URL
 		$route = explode('/', $this->request->getPath());
 		if (empty($route[1])) {
-			$client = $this->request->getVariable('client');
-			if (empty($client)) {
-				header('Location: http://'.$_SERVER['SERVER_NAME'].'/'.$this->web_default);
-			} else {
-				header('Location: http://'.$_SERVER['SERVER_NAME'].'/'.$this->client_default.'?client='.$client);
-			}
+			// Default page
+			header('Location: http://'.$_SERVER['SERVER_NAME'].'/'.$this->web_default);
 		} else {
-			$page = $this->model->load($route[1], $this->request->getVariable('client'));
-			if ($page > 0) {
-				if ($page == 1) {
-					$route[1] = 'access-denied';
-				} elseif ($page == 2) {
-					if ($route[1] == 'access-denied' || $route[1] == 'not-found') {
-						trigger_error('No valid page found.', E_USER_ERROR);
-					} else {
-						$route[1] = 'not-found';
-					}
+			// Page not found
+			if (!$this->model->load($route[1])) {
+				if ($route[1] == 'not-found') {
+					// Can't find the not-found page
+					trigger_error('404 Page not found.', E_USER_ERROR);
 				}
-				header('Location: http://'.$_SERVER['SERVER_NAME'].'/'.$route[1]);
+				header('Location: http://'.$_SERVER['SERVER_NAME'].'/not-found');
 			}
 		}
 	}
