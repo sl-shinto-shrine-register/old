@@ -18,3 +18,4 @@ Credits
 -------
 * Homepage: slsr.org
 * Author: Vivien Richter <vivien-richter@outlook.de>
+* Git repository: https://github.com/vivi90/v1.slsr.git
