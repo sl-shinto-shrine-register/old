@@ -49,7 +49,13 @@ class Controller
 		$route = explode('/', $this->request->getPath());
 		if (empty($route[1])) {
 			// Default page
-			header('Location: http://'.$_SERVER['SERVER_NAME'].'/'.$this->web_default);
+			if (empty($this->request->getVariable('client'))) {
+				// For the web browsers
+				header('Location: http://'.$_SERVER['SERVER_NAME'].'/'.$this->web_default);
+			} else {
+				// For the boards
+				header('Location: http://'.$_SERVER['SERVER_NAME'].'/'.$this->client_default);
+			}
 		} else {
 			// Page not found
 			if (!$this->model->load($route[1])) {
