@@ -1,5 +1,5 @@
-Second Life Shinto shrine register (SLSR)
-=========================================
+Second Life Shinto shrine register (SLSR) [Old version]
+=======================================================
 
 
 About
