@@ -7,7 +7,7 @@ return array(
 
 'database_host' => 'localhost',
 'database_port' => 3306,
-'database_db' => 'slsr',
+'database_db' => 'slsr_old',
 'database_charset' => 'utf8',
 'database_user' => 'root',
 'database_password' => '4321',
