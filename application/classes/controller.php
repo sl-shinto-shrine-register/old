@@ -45,26 +45,30 @@ class Controller
 	 */
 	public function updatePage()
 	{
+		// Get client type
+		if (empty($this->request->getVariable('client'))) {
+			// Set page type
+			$this->model->setClientType(Page::CLIENT_TYPE_BROWSER);
+			// Set the default page
+			$defaultPage = $this->web_default;
+		} else {
+			// Set page type
+			$this->model->setClientType(Page::CLIENT_TYPE_BOARD);
+			// Set the default page
+			$defaultPage = $this->client_default.'?client=1';
+		}
 		// Parse URL
 		$route = explode('/', $this->request->getPath());
 		if (empty($route[1])) {
-			// Default page
-			if (empty($this->request->getVariable('client'))) {
-				// For the web browsers
-				header('Location: http://'.$_SERVER['SERVER_NAME'].'/'.$this->web_default);
-			} else {
-				// For the boards
-				header('Location: http://'.$_SERVER['SERVER_NAME'].'/'.$this->client_default);
-			}
+			// Redirect to the default page
+			header('Location: http://'.$_SERVER['SERVER_NAME'].'/'.$defaultPage);
 		} else {
 			// Page not found
 			if (!$this->model->load($route[1])) {
-				if ($route[1] == 'not-found') {
-					// Can't find the not-found page
-					trigger_error('404 Page not found.', E_USER_ERROR);
-				}
-				header('Location: http://'.$_SERVER['SERVER_NAME'].'/not-found');
+				header('HTTP/1.0 404 Not Found');
+				die ('<html><head><title>404</title></head><body><h1>Page not found.</h1>'."\n".'<p>Please go to the <a href="/">homepage</a>.</body></html>');
 			}
+			
 		}
 	}
 }

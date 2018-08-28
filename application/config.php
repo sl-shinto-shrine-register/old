@@ -1,6 +1,6 @@
 <?php
 return array(
-'debug' => FALSE,
+'debug' => TRUE,
 'webmaster' => 'Vivien Richter',
 'webmaster_email' => 'webmaster@slsr.org',
 'project_name' => 'SL Shrine list',
@@ -12,7 +12,7 @@ return array(
 'database_user' => 'root',
 'database_password' => '4321',
 
-'default_client_page' => 'random',
+'default_client_page' => 'shrines',
 'default_web_page' => 'about',
 'charset' => 'utf-8'
 );

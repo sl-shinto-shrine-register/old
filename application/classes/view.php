@@ -31,7 +31,7 @@ class View
 	 */
 	public function output()
 	{
-		include BASE_DIRECTORY.'/templates/page.phtml';
+		include BASE_DIRECTORY.'/templates/'.$this->model->getClientType().'/page.phtml';
 	}
 }
 ?>

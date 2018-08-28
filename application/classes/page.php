@@ -5,6 +5,16 @@
 class Page extends Model
 {
 	/**
+	 * @var int Client type: Board
+	 */
+	const CLIENT_TYPE_BOARD = 'board';
+	
+	/**
+	 * @var int Client type: Browser
+	 */
+	const CLIENT_TYPE_BROWSER = 'browser';
+	
+	/**
 	 * @var string Page caption
 	 */
 	private $caption;
@@ -25,6 +35,11 @@ class Page extends Model
 	private $type;
 	
 	/**
+	 * @var string Client type
+	 */
+	private $clientType;
+	
+	/**
 	 * @var array Articles, listed on the page
 	 */
 	private $articles = array();
@@ -33,13 +48,12 @@ class Page extends Model
 	 * Load page data
 	 *
 	 * @param string $name Page name
-	 * @return int '0' = OK; '1' = Access denied; '2' = not found
 	 * @return bool Returns TRUE, if the page exists. Otherwise FALSE.
 	 */
-	public function load($name)
+	public function load(string $name)
 	{
 		if ($name == 'random') {
-			$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM pages WHERE type = 3 ORDER BY rand() LIMIT 1');
+			$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM pages WHERE type = 0 ORDER BY rand() LIMIT 1');
 		} else {
 			$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM pages WHERE name = :name');
 			$statement->bindValue(':name', $name, Database::TYPE_STR);
@@ -73,6 +87,32 @@ class Page extends Model
 			$this->articles[] = $article;
 		}
 	}
+
+	/**
+	 * Get list of pages
+	 * 
+	 * @param int[] $types Page types
+	 * 
+	 * @return array Returns an array, containing the IDs, captions and routes of the pages
+	 */
+	 public function getPageList(array $types = array())
+	 {
+	 	$pages = array();
+	 	if (empty($types)) {
+	 		$statement = $this->database->prepare('SELECT id, name, caption, type FROM pages');
+	 	} else {
+	 		$statement = $this->database->prepare('SELECT id, name, caption, type FROM pages WHERE type = '.implode(' OR type = ', $types));
+	 	}
+		$statement->execute();
+		while ($result = $statement->fetch()) {
+			$page['id'] = $result['id'];
+			$page['caption'] = $result['caption'];
+			$page['route'] = $result['name'];
+			$page['type'] = $result['type'];
+			$pages[] = $page;
+		}
+		return $pages;
+	 }
 
 	/**
 	 * Get page caption
@@ -115,6 +155,16 @@ class Page extends Model
 	}
 	
 	/**
+	 * Get client type
+	 * 
+	 * @return string Client type
+	 */
+	public function getClientType()
+	{
+		return $this->clientType;
+	}
+	
+	/**
 	 * Get articles, listed on the page
 	 *
 	 * @return Article[] Array of article objects
@@ -125,28 +175,23 @@ class Page extends Model
 	}
 	
 	/**
-	 * Get list of pages
+	 * Set page type
 	 * 
-	 * @param int[] $types Page types
-	 * 
-	 * @return array Returns an array, containing the IDs, captions and routes of the pages
+	 * @param int $pageType Page type
 	 */
-	 public function getPageList(array $types = array())
-	 {
-	 	$pages = array();
-	 	if (empty($types)) {
-	 		$statement = $this->database->prepare('SELECT id, name, caption FROM pages');
-	 	} else {
-	 		$statement = $this->database->prepare('SELECT id, name, caption FROM pages WHERE type = '.implode(' OR type = ', $types));
-	 	}
-		$statement->execute();
-		while ($result = $statement->fetch()) {
-			$page['id'] = $result['id'];
-			$page['caption'] = $result['caption'];
-			$page['route'] = $result['name'];
-			$pages[] = $page;
-		}
-		return $pages;
-	 }
+	public function setPageType(int $pageType)
+	{
+		$this->type = $pageType;
+	}
+	
+	/**
+	 * Set client type
+	 * 
+	 * @param string $clientType Client type
+	 */
+	public function setClientType(string $clientType)
+	{
+		$this->clientType = $clientType;
+	}
 }
 ?>

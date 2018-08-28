@@ -1,0 +1,18 @@
+   <section>
+    <?php
+    echo $this->model->getPageContent();
+	$articles = $this->model->getArticles();
+	if (!empty($articles)) {
+		foreach($articles as $article) {
+			echo '   <article>';
+			echo '    <header>';
+			echo '     <h3 id="shrine_'.$article->getID().'">'.$article->getCaption().'</h3>';
+			echo '    </header>';
+			echo '    <img src="'.$article->getImage().'" width="100%">';
+			echo '    <p>'.$article->getDescription().'</p>';
+			echo '    <a class="teleport" href="'.$article->getLink().'">Teleport</a>';
+			echo '   </article>';
+		}
+	}
+	?>
+   </section>

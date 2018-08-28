@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <?php include BASE_DIRECTORY.'/templates/common/meta.phtml'; ?>
+  <link rel="stylesheet" href="/css/screen/layout.css" media="screen"/>
+  <link rel="stylesheet" href="/css/screen/design.css" media="screen"/>
+  <link rel="stylesheet" href="/css/printer/layout.css" media="print"/>
+  <link rel="stylesheet" href="/css/printer/design.css" media="print"/>
+  <script src="js/portrait_menu.js"></script>
+ </head>
+ <body onLoad="portraitMenuButton();" onResize="portraitMenuButton();">
+  <?php include 'header.phtml'; ?>
+  <?php include 'navigation.phtml'; ?>
+  <main>
+   <?php include BASE_DIRECTORY.'/templates/common/content.phtml'; ?>
+   <a id="nav_link" href="#nav">Scroll to the navigation bar</a>
+  </main>
+  <?php include 'footer.phtml' ?>
+ </body>
+</html>

@@ -1,0 +1,21 @@
+  <nav id="nav">
+   <ul>
+	<?php
+	$pages = $this->model->getPageList(array(1, 2));
+	$currentPage = $this->model;
+	foreach ($pages as $page) {
+		echo '<li>';
+		echo '<a'.(($currentPage->getID() == $page['id']) ? ' id="active"' : '').' href="../'.$page['route'].'">'.$page['caption'].'</a>';
+		if (($page['type'] == 2) && ($currentPage->getPageType() == 2 || $currentPage->getPageType() == 0)) {
+			echo '<ul>';
+			$subPages = $this->model->getPageList(array(0));
+			foreach ($subPages as $page) {
+				echo '<li><a'.(($currentPage->getID() == $page['id']) ? ' id="active"' : '').' href="../'.$page['route'].'">'.$page['caption'].'</a>'."</li>\n";
+			}
+			echo '</ul>';
+		}
+		echo "</li>\n";
+	}
+	?>
+   </ul>
+  </nav>
