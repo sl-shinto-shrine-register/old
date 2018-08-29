@@ -74,7 +74,7 @@ class Article extends Model
 			$image->scale(960, 540);
 			$image->saveToFileAs($destinationImagePath, Image::MIME_TYPE_JPEG, 20);
 		}
-		return $frontendImageLink;
+		return '/'.$frontendImageLink;
 	}
 	
 	/**

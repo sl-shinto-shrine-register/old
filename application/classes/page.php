@@ -5,6 +5,21 @@
 class Page extends Model
 {
 	/**
+	 * @var int Page type: Normal
+	 */
+	const PAGE_TYPE_NORMAL = 1;
+	
+	/**
+	 * @var int Page type: Category
+	 */
+	const PAGE_TYPE_CATEGORY = 2;
+	
+	/**
+	 * @var int Page type: Subpage
+	 */
+	const PAGE_TYPE_SUBPAGE = 0;
+	
+	/**
 	 * @var int Client type: Board
 	 */
 	const CLIENT_TYPE_BOARD = 'board';
