@@ -17,11 +17,14 @@ if (version_compare(PHP_VERSION, '5.4.0') < 0) {
 /**
  * Get base directory
  */
-define('BASE_DIRECTORY', dirname(__FILE__));
+define('BASE_DIRECTORY', dirname(__DIR__));
 
 /**
  * Set class autoloading
  */
-set_include_path(get_include_path().PATH_SEPARATOR.BASE_DIRECTORY.'/classes');
+set_include_path(get_include_path().PATH_SEPARATOR.BASE_DIRECTORY.'/application');
+set_include_path(get_include_path().PATH_SEPARATOR.BASE_DIRECTORY.'/application/models');
+set_include_path(get_include_path().PATH_SEPARATOR.BASE_DIRECTORY.'/application/views');
+set_include_path(get_include_path().PATH_SEPARATOR.BASE_DIRECTORY.'/application/controller');
 spl_autoload_register();
 ?>

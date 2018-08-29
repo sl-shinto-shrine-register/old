@@ -37,7 +37,7 @@ class Application
 	public function __construct($request_uri)
 	{
 		$this->configuration = new Configuration(
-			BASE_DIRECTORY.'/config.php'
+			BASE_DIRECTORY.'/configuration.php'
 		);
 		$this->errorHandler = new ErrorHandler(
 			$this->configuration->get('debug'), 
