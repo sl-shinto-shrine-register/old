@@ -5,6 +5,11 @@
 class Page extends Model
 {
 	/**
+	 * @var string Database table
+	 */
+	const DATABASE_TABLE = 'pages';
+	
+	/**
 	 * @var int Page type: Normal
 	 */
 	const PAGE_TYPE_NORMAL = 1;
@@ -68,9 +73,9 @@ class Page extends Model
 	public function load(string $name)
 	{
 		if ($name == 'random') {
-			$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM pages WHERE type = 0 ORDER BY rand() LIMIT 1');
+			$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM '.self::DATABASE_TABLE.' WHERE type = 0 ORDER BY rand() LIMIT 1');
 		} else {
-			$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM pages WHERE name = :name');
+			$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM '.self::DATABASE_TABLE.' WHERE name = :name');
 			$statement->bindValue(':name', $name, Database::TYPE_STR);
 		}
 		$statement->execute();
@@ -93,7 +98,7 @@ class Page extends Model
 	 */
 	public function loadArticles()
 	{
-		$statement = $this->database->prepare('SELECT article_id FROM articles_to_pages WHERE page_id = :page_id');
+		$statement = $this->database->prepare('SELECT article_id FROM '.Article::DATABASE_TABLE.'_to_'.Page::DATABASE_TABLE.' WHERE page_id = :page_id');
 		$statement->bindValue(':page_id', $this->id, Database::TYPE_INT);
 		$statement->execute();
 		while ($result = $statement->fetch()) {
@@ -114,9 +119,9 @@ class Page extends Model
 	 {
 	 	$pages = array();
 	 	if (empty($types)) {
-	 		$statement = $this->database->prepare('SELECT id, name, caption, type FROM pages');
+	 		$statement = $this->database->prepare('SELECT id, name, caption, type FROM '.self::DATABASE_TABLE);
 	 	} else {
-	 		$statement = $this->database->prepare('SELECT id, name, caption, type FROM pages WHERE type = '.implode(' OR type = ', $types));
+	 		$statement = $this->database->prepare('SELECT id, name, caption, type FROM '.self::DATABASE_TABLE.' WHERE type = '.implode(' OR type = ', $types));
 	 	}
 		$statement->execute();
 		while ($result = $statement->fetch()) {

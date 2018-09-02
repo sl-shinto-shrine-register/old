@@ -6,6 +6,11 @@
 class Article extends Model
 {
 	/**
+	 * @var string Database table
+	 */
+	const DATABASE_TABLE = 'articles';
+	
+	/**
 	 * @var string Caption
 	 */
 	protected $caption = '';
@@ -29,7 +34,7 @@ class Article extends Model
 	 */
 	public function load($id)
 	{
-		$statement = $this->database->prepare('SELECT caption, description, link FROM articles WHERE id = :id');
+		$statement = $this->database->prepare('SELECT caption, description, link FROM '.self::DATABASE_TABLE.' WHERE id = :id');
 		$statement->bindValue(':id', $id, Database::TYPE_INT);
 		$statement->execute();
 		$result = $statement->fetch();

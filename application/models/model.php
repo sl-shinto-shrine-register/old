@@ -5,6 +5,11 @@
 abstract class Model
 {
 	/**
+	 * @var string Database table
+	 */
+	const DATABASE_TABLE = '';
+	
+	/**
 	 * @var int Identifier
 	 */
 	protected $id = 0;
