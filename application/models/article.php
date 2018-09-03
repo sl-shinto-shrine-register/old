@@ -1,7 +1,6 @@
 <?php
-
 /**
- * File class
+ * Article class
  */
 class Article extends Model
 {
@@ -24,6 +23,11 @@ class Article extends Model
 	 * @var string Link
 	 */
 	private $link = '';
+	
+	/**
+	 * @var Owner Article owner
+	 */
+	private $owner;
 
 	/**
 	 * Load article data
@@ -34,7 +38,7 @@ class Article extends Model
 	 */
 	public function load($id)
 	{
-		$statement = $this->database->prepare('SELECT caption, description, link FROM '.self::DATABASE_TABLE.' WHERE id = :id');
+		$statement = $this->database->prepare('SELECT caption, description, link, owner_id FROM '.self::DATABASE_TABLE.' WHERE id = :id');
 		$statement->bindValue(':id', $id, Database::TYPE_INT);
 		$statement->execute();
 		$result = $statement->fetch();
@@ -45,6 +49,7 @@ class Article extends Model
 			$this->caption = $result['caption'];
 			$this->description = $result['description'];
 			$this->link = $result['link'];
+			$this->owner = new Owner($this->database, $result['owner_id']);
 			return TRUE;
 		}
 	}
@@ -100,6 +105,16 @@ class Article extends Model
 	public function getLink()
 	{
 		return 'secondlife://'.$this->link;
+	}
+	
+	/**
+	 * Get the owner of the article.
+	 * 
+	 * @return Owner Returns the Owner.
+	 */
+	public function getOwner()
+	{
+		return $this->owner;
 	}
 }
 ?>
