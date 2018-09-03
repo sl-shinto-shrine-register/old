@@ -26,5 +26,6 @@ set_include_path(get_include_path().PATH_SEPARATOR.BASE_DIRECTORY.'/application'
 set_include_path(get_include_path().PATH_SEPARATOR.BASE_DIRECTORY.'/application/models');
 set_include_path(get_include_path().PATH_SEPARATOR.BASE_DIRECTORY.'/application/views');
 set_include_path(get_include_path().PATH_SEPARATOR.BASE_DIRECTORY.'/application/controller');
+set_include_path(get_include_path().PATH_SEPARATOR.BASE_DIRECTORY.'/application/tasks');
 spl_autoload_register();
 ?>

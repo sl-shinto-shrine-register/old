@@ -15,6 +15,16 @@ class Application
 	private $errorHandler;
 	
 	/**
+	 * @var Database Instance of Database
+	 */
+	private $database;
+	
+	/**
+	 * @var Scheduler Instance of Scheduler
+	 */
+	private $scheduler;
+	
+	/**
 	 * @var Page Instance of Page
 	 */
 	private $model;
@@ -46,15 +56,20 @@ class Application
 			$this->configuration->get('project_name'), 
 			$this->configuration->get('charset')
 		);
+		$this->database = new Database(
+			$this->configuration->get('database_host'), 
+			$this->configuration->get('database_port'), 
+			$this->configuration->get('database_db'), 
+			$this->configuration->get('database_charset'),
+			$this->configuration->get('database_user'), 
+			$this->configuration->get('database_password')
+		);
+		$this->scheduler = new Scheduler(
+			$this->database,
+			$this->configuration->get('tasks')
+		);
 		$this->model = new Page(
-			new Database(
-				$this->configuration->get('database_host'), 
-				$this->configuration->get('database_port'), 
-				$this->configuration->get('database_db'), 
-				$this->configuration->get('database_charset'),
-				$this->configuration->get('database_user'), 
-				$this->configuration->get('database_password')
-			)
+			$this->database
 		);
 		$this->view = new View(
 			$this->model, 
@@ -73,6 +88,7 @@ class Application
 	 */
 	public function Run()
 	{
+		$this->scheduler->run();
 		$this->controller->updatePage();
 		$this->view->output();
 	}

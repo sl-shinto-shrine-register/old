@@ -14,6 +14,8 @@ return array(
 
 'default_client_page' => 'shrines',
 'default_web_page' => 'about',
-'charset' => 'utf-8'
+'charset' => 'utf-8',
+
+'tasks' => array()
 );
 ?>
