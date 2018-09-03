@@ -16,6 +16,6 @@ return array(
 'default_web_page' => 'about',
 'charset' => 'utf-8',
 
-'tasks' => array()
+'tasks' => array('UpdateOwners')
 );
 ?>

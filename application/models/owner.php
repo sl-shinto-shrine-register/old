@@ -94,6 +94,17 @@ class Owner extends Model {
 	}
 	
 	/**
+	 * Get the oldest owner database record.
+	 * @param Database $database Database connection.
+	 * @return Owner Returns an owner object.
+	 */
+	public static function getOldest(Database $database) {
+		$statement = $database->prepare('SELECT id, last_update FROM '.self::DATABASE_TABLE.' ORDER BY last_update ASC LIMIT 1');
+		$statement->execute();
+		return new self($database, $statement->fetch()['id']);
+	}
+	
+	/**
 	 * Update the owner.
 	 * 
 	 * @return bool Returns TRUE, if successfully updated.
@@ -126,7 +137,7 @@ class Owner extends Model {
 	 * @return bool Returns TRUE, if successfully saved.
 	 */
 	protected function saveToDatabase(string $uuid, string $name) {
-		$statement = $this->database->prepare('INSERT INTO '.self::DATABASE_TABLE.' (id, name, last_update) VALUES (:uuid, :name, now())');
+		$statement = $this->database->prepare('INSERT INTO '.self::DATABASE_TABLE.' (id, name, last_update) VALUES (:uuid, :name, now()) ON DUPLICATE KEY UPDATE name = :name, last_update = now()');
 		$statement->bindValue(':uuid', $uuid, Database::TYPE_STR);
 		$statement->bindValue(':name', $name, Database::TYPE_STR);
 		return $statement->execute();
