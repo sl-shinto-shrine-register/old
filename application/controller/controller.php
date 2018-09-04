@@ -45,18 +45,10 @@ class Controller
 	 */
 	public function updatePage()
 	{
-		// Get client type
-		if (empty($this->request->getVariable('client'))) {
-			// Set page type
-			$this->model->setClientType(Page::CLIENT_TYPE_BROWSER);
-			// Set the default page
-			$defaultPage = $this->web_default;
-		} else {
-			// Set page type
-			$this->model->setClientType(Page::CLIENT_TYPE_BOARD);
-			// Set the default page
-			$defaultPage = $this->client_default.'?client=1';
-		}
+		// Set page client type
+		$this->model->setClientType($this->request->getClientType());
+		// Set the default page
+		$defaultPage = (($this->request->getClientType() == Request::CLIENT_TYPE_BOARD) ? $this->client_default.'?client=1' : $this->web_default);
 		// Parse URL
 		$route = explode('/', $this->request->getPath());
 		if (empty($route[1])) {

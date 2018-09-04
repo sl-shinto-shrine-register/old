@@ -12,7 +12,7 @@ return array(
 'database_user' => 'root',
 'database_password' => '4321',
 
-'default_client_page' => 'shrines',
+'default_client_page' => 'random',
 'default_web_page' => 'about',
 'charset' => 'utf-8',
 
