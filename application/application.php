@@ -73,7 +73,8 @@ class Application
 		);
 		$this->view = new View(
 			$this->model, 
-			$this->configuration->get('charset')
+			$this->configuration->get('charset'),
+			$this->configuration->get('display_owners')
 		);
 		$this->controller = new Controller(
 			$this->model, 
