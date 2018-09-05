@@ -99,7 +99,7 @@ article > p {
   padding-right: 2em;
 }
 
-#table-provider td {
+.table-provider td {
   padding: 0 0 0.1em 1em;
   white-space: pre-line;
   vertical-align: top;
