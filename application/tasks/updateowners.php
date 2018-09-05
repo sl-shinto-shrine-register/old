@@ -11,7 +11,8 @@ class UpdateOwners extends Task {
 	 */
 	public function run() {
 		// Updates only the oldest owner database record at every request
-		Owner::getOldest($this->database)->update();
+		$oldestOwner = Owner::getOldest($this->database);
+		if (!empty($oldestOwner)) $oldestOwner->update();
 	}
 }
 

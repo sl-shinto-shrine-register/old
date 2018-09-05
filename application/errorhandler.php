@@ -94,6 +94,10 @@
 			$this->line = func_get_arg(3);
 			$this->context = func_get_arg(4);
 		}
+		// Exception for network connection errors
+		if ((strpos($this->errorMessage, 'php_network_getaddresses') !== FALSE) && !$this->debug) {
+			return true;
+		}
 		// Generate report
 		$report = $this->generateReport(
 			$this->errorCode, 

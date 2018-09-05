@@ -96,12 +96,16 @@ class Owner extends Model {
 	/**
 	 * Get the oldest owner database record.
 	 * @param Database $database Database connection.
-	 * @return Owner Returns an owner object.
+	 * @return Owner|null Returns an owner object on success. Otherwise null.
 	 */
 	public static function getOldest(Database $database) {
 		$statement = $database->prepare('SELECT id, last_update FROM '.self::DATABASE_TABLE.' ORDER BY last_update ASC LIMIT 1');
 		$statement->execute();
-		return new self($database, $statement->fetch()['id']);
+		$result = $statement->fetch();
+		if (empty($result)) {
+			return null;
+		}
+		return new self($database, $result['id']);
 	}
 	
 	/**
@@ -110,8 +114,11 @@ class Owner extends Model {
 	 * @return bool Returns TRUE, if successfully updated.
 	 */
 	public function update() {
-		$this->setName($this->parseNameFromLink($this->getProfileLinkForBrowsers()));
-		$this->saveToDatabase($this->getUUID(), $this->getName());
+		$newName = $this->parseNameFromLink($this->getProfileLinkForBrowsers());
+		if (!empty($newName)) {
+			$this->setName($newName);
+			$this->saveToDatabase($this->getUUID(), $this->getName());
+		}
 	}
 	
 	/**
@@ -165,12 +172,15 @@ class Owner extends Model {
 	 * Parse the owner name by it's profile link.
 	 * 
 	 * @param string $profileLink Profile link.
-	 * @return string Returns the owner name.
+	 * @return string Returns the owner name, if the link is available. Otherwise an empty string.
 	 */
 	protected function parseNameFromLink(string $profileLink) {
 		$dom = new DOMDocument();
-		libxml_use_internal_errors(true); // Hide parse errors
-		$dom->loadHTMLFile($profileLink);
-		return $dom->getElementsByTagName('title')->item(0)->nodeValue;
+		if (strpos(get_headers($profileLink)[0], '200') !== FALSE) {
+			$dom->loadHTMLFile($profileLink, LIBXML_NOWARNING | LIBXML_NOERROR);
+			return $dom->getElementsByTagName('title')->item(0)->nodeValue;
+		} else {
+			return '';
+		}
 	}
 }
