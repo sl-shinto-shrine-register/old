@@ -75,8 +75,8 @@ class Article extends Model
 		$filename = str_replace(' ', '_', $this->getCaption());
 		// Get paths
 		$frontendImageLink = 'images/shrines/small/'.$filename.'.jpg';
-		$sourceImagePath = BASE_DIRECTORY.'/../public/images/shrines/'.$filename.'.png';
-		$destinationImagePath = BASE_DIRECTORY.'/../public/'.$frontendImageLink;
+		$sourceImagePath = BASE_DIRECTORY.'/public/images/shrines/'.$filename.'.png';
+		$destinationImagePath = BASE_DIRECTORY.'/public/'.$frontendImageLink;
 		// Check
 		if (!file_exists($destinationImagePath) && file_exists($sourceImagePath)) {
 			// Process
