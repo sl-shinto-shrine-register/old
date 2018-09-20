@@ -5,14 +5,14 @@
 class Configuration
 {
 	/**
-	 * @var array Configuration values
+	 * @var array Configuration values.
 	 */
 	private $values;
 	
 	/**
-	 * Creates a new class instance
+	 * Creates a new class instance.
 	 * 
-	 * @param string $filename Configuration file
+	 * @param string $filename Configuration file.
 	 */
 	public function __construct($filename)
 	{
@@ -24,15 +24,18 @@ class Configuration
 	}
 	
 	/**
-	 * Get configuration value
+	 * Get configuration value.
 	 * 
-	 * @param string $key Configuration key
-	 * 
-	 * @return mixed Configuration value
+	 * @param string $key Configuration key.
+	 * @param mixed $default Default value to return, if the key doesn't exist (Default: null).
+	 * @return mixed Configuration value.
 	 */
-	public function get($key)
+	public function get($key, $default = null)
 	{
-		return $this->values[$key];
+		if (isset($this->values[$key])) {
+			return $this->values[$key];
+		}
+		return $default;
 	}
 }
 ?>
