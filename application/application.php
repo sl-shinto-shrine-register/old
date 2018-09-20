@@ -66,7 +66,7 @@ class Application
 		);
 		$this->scheduler = new Scheduler(
 			$this->database,
-			$this->configuration->get('tasks')
+			$this->configuration->get('tasks', array())
 		);
 		$this->model = new Page(
 			$this->database
