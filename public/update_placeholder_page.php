@@ -13,8 +13,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
  </head>
  <body>
+  <header>
+  	<h1>Update in progress..</h1>
+  </header>
   <main>
-   	<h1>Update in progress..</h1>
    	<p>We will be back in a few minutes.</p>
    	<p>If you have any questions, please feel free to <a href="mailto:webmaster@slsr.org">contact</a> us.</p>
   </main>

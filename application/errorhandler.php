@@ -4,6 +4,12 @@
  */
  class ErrorHandler
  {
+ 	
+	/**
+	 * @var int MySQL error code
+	 */
+	const ERROR_CODE_MYSQL_NOT_AVAILABLE = 1105;
+	
  	/**
 	 * @var bool Debug mode
 	 */
@@ -94,10 +100,6 @@
 			$this->line = func_get_arg(3);
 			$this->context = func_get_arg(4);
 		}
-		// Exception for network connection errors
-		if ((strpos($this->errorMessage, 'php_network_getaddresses') !== FALSE) && !$this->debug) {
-			return true;
-		}
 		// Generate report
 		$report = $this->generateReport(
 			$this->errorCode, 
@@ -117,8 +119,13 @@
 				$report, 
 				$this->charset
 			);
+			// Exception for network connection errors
+			if (strpos($this->errorMessage, 'php_network_getaddresses') !== FALSE) {
+				return true;
+			}
 			die(
 				$this->generateUserMessage(
+					$this->errorCode,
 					$this->webmasterEmail, 
 					$this->charset
 				)
@@ -179,26 +186,59 @@
 	/**
 	 * Generate error message for the user
 	 * 
+	 * @param int $errorCode Error level
 	 * @param string $webmasterEmail Webmaster email address
 	 * @param string $charset Character set (default: utf-8)
 	 * 
 	 * @return string User message
 	 */
-	private function generateUserMessage($webmasterEmail, $charset = "utf-8")
+	private function generateUserMessage($errorCode, $webmasterEmail, $charset = "utf-8")
 	{
-		return '<!DOCTYPE html>
+		// Common stuff
+		$header = '<!DOCTYPE html>
 <html lang="en">
  <head>
-  <meta http-equiv="Content-Type" content="text/html; charset='.$charset.'"/>
-  <title>Error</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="msapplication-TileColor" content="#ffffff"/>
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png"/>
+  <meta name="author" content="Vivien Richter"/>
+  <meta name="description" content="The Second Life Shinto Shrine Register (SLSR) is a association of Shinto shrines in Second Life."/>
+  <meta name="keywords" content="Second Life, SL, Shinto, shrine register, board"/>
+  <title>Second Life Shinto Shrine Register</title>
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+  <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32"/>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
  </head>
  <body>
-  <header>
-   <h1>An error occured.</h1>
-  </header>
-  <p>I am sorry for the inconvenience. I have been notified and will correct this issue as quickly as possible. For further information, please contact me at <a href="mailto:'.$webmasterEmail.'">'.$webmasterEmail.'</a>.</p>
+  ';
+		$footer = '
  </body>
-</html>';
+</html>
+		';
+		
+		// Different content
+		if ($errorCode == self::ERROR_CODE_MYSQL_NOT_AVAILABLE) {
+			$content = '<header>
+  	<h1>Maintenance in progress..</h1>
+  </header>
+  <main>
+   	<p>We will be back in a few seconds.</p>
+   	<p>If you have any questions, please feel free to <a href="mailto:webmaster@slsr.org">contact</a> us.</p>
+  </main>';
+		} else {
+			// General technical error
+			$content = '<header>
+  	<h1>An error occured.</h1>
+  </header>
+  <main>
+   	<p>We are sorry for the inconvenience.</p>
+   	<p>We have been notified and will correct this issue as quickly as possible.</p>
+   	<p>For further information, please contact us at <a href="mailto:'.$webmasterEmail.'">'.$webmasterEmail.'</a>.</p>
+  </main>';
+		}
+		
+		// Return the whole error page
+		return $header.$content.$footer;
 	}
 	
 	/**
