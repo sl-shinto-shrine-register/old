@@ -1,6 +1,13 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
 body {
 	margin: 1em;
 	text-align: center;
+	font-size: 5em;
+	background-color: #FC6;
 }
 
 h3 {
@@ -11,6 +18,10 @@ p {
 	margin-top: 1em;
 }
 
+.owner span {
+	font-style: italic;
+}
+
 .teleport {
 	display: inline-block;
 	width: 6em;
@@ -19,4 +30,8 @@ p {
 	margin-bottom: 4em;
 	font-weight: bold;
 	text-align: center;
+	background-color: #7F5417;
+	color: #ffffcc;
+	text-decoration: none;
+	border: solid 0.1em;
 }

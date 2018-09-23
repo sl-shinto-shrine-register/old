@@ -1,0 +1,127 @@
+/* Header */
+
+body {
+	color: #000000;
+	background: #FFFFFF;
+}
+
+body > header {
+	padding: 1em 1em 0.5em 1em;
+	background-color: #5d5346;
+}
+
+header a {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+#logo {
+	width: 2em;
+	filter: drop-shadow(-0.05em 0 0.05em black)
+			drop-shadow(0 0.05em 0.05em black)
+			drop-shadow(0.05em 0 0.05em black)
+			drop-shadow(0 -0.05em 0.05em black);
+}
+
+h1 {
+	display: inline;
+	margin-left: 0.25em;
+}
+
+/* Navigation */
+
+nav {
+	display: none;
+}
+
+/* Main */
+
+article {
+	page-break-inside: avoid;
+}
+
+a {
+	color: #000000;
+	text-decoration: none;
+}
+
+em {
+	font-style: normal;
+	font-weight: bold;
+}
+
+.free {
+	color: #008000;
+}
+
+.link-bar, #nav_link {
+	display: none;
+}
+
+.team, .git, .sources, .badge {
+	margin-top: -0.5em;
+	margin-bottom: 2em;
+}
+
+.badge {
+	margin-bottom: 1em;
+}
+
+.team th, .git th {
+	text-align: left;
+	width: 15em;
+}
+
+.team td {
+	white-space: pre-line;
+}
+
+.sources {
+	border-collapse: collapse;
+}
+
+.sources th, .sources td {
+	border: solid black 0.2em;
+	padding: 1em;
+}
+
+.sources th {
+	background: #5d5346;
+}
+
+.sources .link {
+	word-break: break-all;
+}
+
+.badge {
+	display: inline-block;
+	margin-right: 2em;
+}
+
+.badge img {
+	height: 1.5em;
+	box-shadow: none;
+}
+
+#strato {
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.owner {
+	margin-bottom: 2em;
+}
+
+.owner span {
+	font-weight: bold;
+}
+
+.teleport {
+	display: none;
+}
+
+/* Footer */
+
+footer {
+	text-align: center;
+}

@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-  <?php include BASE_DIRECTORY.'/templates/common/meta.phtml'; ?>
-  <link rel="stylesheet" href="/css/screen/layout.css" media="screen"/>
-  <link rel="stylesheet" href="/css/screen/design.css" media="screen"/>
-  <link rel="stylesheet" href="/css/printer/layout.css" media="print"/>
-  <link rel="stylesheet" href="/css/printer/design.css" media="print"/>
-  <script src="js/portrait_menu.js"></script>
- </head>
- <body onLoad="portraitMenuButton();" onResize="portraitMenuButton();">
-  <?php include 'header.phtml'; ?>
-  <?php include 'navigation.phtml'; ?>
-  <main>
-   <?php include BASE_DIRECTORY.'/templates/browser/content.phtml'; ?>
-   <a id="nav_link" href="#nav">Scroll to the navigation bar</a>
-  </main>
-  <?php include 'footer.phtml' ?>
- </body>
+	<head>
+		<?php include BASE_DIRECTORY.'/templates/common/meta.phtml'; ?>
+		<link rel="stylesheet" href="/css/screen.css" media="screen"/>
+		<link rel="stylesheet" href="/css/printer.css" media="print"/>
+		<script src="/js/responsive.js"></script>
+	</head>
+	<body>
+		<header>
+			<!-- Banner -->
+			<?php include 'header.phtml'; ?>
+		</header>
+		<nav>
+			<!-- Navigation menu -->
+			<?php include 'navigation.phtml'; ?>
+		</nav>
+		<main>
+			<!-- Content -->
+			<?php include BASE_DIRECTORY.'/templates/browser/content.phtml'; ?>
+			<a id="nav_link" href="#nav">Scroll to the navigation bar</a>
+		</main>
+		<footer>
+			<!-- Copyright -->
+			<?php include 'footer.phtml' ?>
+		</footer>
+	</body>
 </html>

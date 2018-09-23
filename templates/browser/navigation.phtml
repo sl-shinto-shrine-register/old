@@ -1,16 +1,16 @@
   <nav id="nav">
-   <ul>
+   <ul class="menu">
 	<?php
 	$pages = $this->model->getPageList(array(1, 2));
 	$currentPage = $this->model;
 	foreach ($pages as $page) {
-		echo '<li>';
-		echo '<a'.(($currentPage->getID() == $page['id']) ? ' id="active"' : '').' href="/'.$page['route'].'">'.$page['caption'].'</a>';
+		echo '<li'.(($currentPage->getID() == $page['id']) ? ' class="active"' : '').'>';
+		echo '<a href="/'.$page['route'].'">'.$page['caption'].'</a>';
 		if (($page['type'] == Page::PAGE_TYPE_CATEGORY) && ($currentPage->getPageType() == Page::PAGE_TYPE_CATEGORY || $currentPage->getPageType() == Page::PAGE_TYPE_SUBPAGE)) {
 			echo '<ul>';
 			$subPages = $this->model->getPageList(array(0));
 			foreach ($subPages as $subPage) {
-				echo '<li><a'.(($currentPage->getID() == $subPage['id']) ? ' id="active"' : '').' href="/'.$page['route'].'/'.$subPage['route'].'">'.$subPage['caption'].'</a>'."</li>\n";
+				echo '<li'.(($currentPage->getID() == $subPage['id']) ? ' class="active"' : '').'><a href="/'.$page['route'].'/'.$subPage['route'].'">'.$subPage['caption'].'</a>'."</li>\n";
 			}
 			echo '</ul>';
 		}

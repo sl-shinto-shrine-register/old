@@ -1,4 +1,7 @@
    <section>
+   	<header>
+   		<h2><?= (($this->model->getPageType() == Page::PAGE_TYPE_CATEGORY || $this->model->getPageType() == Page::PAGE_TYPE_SUBPAGE) ? $this->model->getPageTitle() : $this->model->getPageCaption()) ?></h2>
+   	</header>
     <?php
     echo $this->model->getPageContent();
 	$articles = $this->model->getArticles();
@@ -10,7 +13,7 @@
 			echo '    </header>';
 			echo '    <img src="'.$article->getImage().'" width="100%">';
 			echo '    <p>'.$article->getDescription().'</p>';
-			if ($this->displayOwners) echo '    <p><em>Owner:</em> <a href="'.$article->getOwner()->getProfileLinkForBrowsers().'" target="_blank">'.$article->getOwner()->getName().'</a></p>';
+			if ($this->displayOwners) echo '    <p class="owner"><span>Owner: </span><a href="'.$article->getOwner()->getProfileLinkForBrowsers().'" target="_blank">'.$article->getOwner()->getName().'</a></p>';
 			echo '    <a class="teleport" href="'.$article->getLink().'">Teleport</a>';
 			echo '   </article>';
 		}

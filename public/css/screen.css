@@ -1,0 +1,273 @@
+/* Common */
+
+body {
+	margin: 0;
+	padding: 0;
+	color: #fff;
+	background-color: #000;
+	background-image: url("../images/background.jpg");
+	text-shadow: -0.2em 0 0.2em #000, 0 0.2em 0.2em #000, 0.2em 0 0.2em #000, 0 -0.2em 0.2em #000;
+}
+
+/* Header */
+
+body > header {
+	padding: 1em 1em 0.5em 1em;
+	background-color: #C0C0C0;
+	background-image: url("../images/banner.jpg");
+	background-size: cover;
+	box-shadow: -0.2em 0 0.2em #000, 0 0.2em 0.2em #000, 0.2em 0 0.2em #000, 0 -0.2em 0.2em #000;
+}
+
+a {
+	text-decoration: none;
+	color: #fff;
+}
+
+#logo {
+	width: 2em;
+	filter: drop-shadow(-0.05em 0 0.05em black)
+			drop-shadow(0 0.05em 0.05em black)
+			drop-shadow(0.05em 0 0.05em black)
+			drop-shadow(0 -0.05em 0.05em black);
+}
+
+h1 {
+	display: inline;
+	margin-left: 0.25em;
+}
+
+/* menuButton */
+
+#menuButton {
+	cursor: pointer;
+	float: right;
+	background-color: red;
+	background-image: url("../images/button.jpg");
+	box-shadow: -0.1em 0 0.1em #000, 0 0.1em 0.1em #000, 0.1em 0 0.1em #000, 0 -0.1em 0.1em #000;
+}
+
+#menuButton:hover, #menuButton.active {
+	background-image: url("../images/button_active.jpg");
+}
+
+#menuButton > div {
+    width: 1.25em;
+    height: 0.25em;
+    margin: 0.3em 0.3em;
+    background-color: black;
+}
+
+/* Navigation */
+
+nav ul {
+	list-style: none;
+	padding: 0;
+}
+
+nav ul.menu > li, ul.menu > li > ul > li {
+	margin: 2em;
+	text-align: center;
+	position: relative;
+}
+
+nav ul.menu li>ul>li::before {
+	content: url('../images/rope.png');
+	position: absolute;
+	top: -2em;
+	z-index: -1;
+}
+
+nav ul.menu li>ul>li:last-child::before {
+	display: none;
+}
+
+nav ul.menu a {
+	display: block;
+	padding: 1em;
+	background-image: url("../images/button.jpg");
+	box-shadow: -0.2em 0 0.2em #000, 0 0.2em 0.2em #000, 0.2em 0 0.2em #000, 0 -0.2em 0.2em #000;
+	font-weight: bold;
+}
+
+nav ul.menu a:hover, nav li.active > a {
+	background-image: url("../images/button_active.jpg");
+	
+}
+
+@media (orientation: landscape) {
+	nav {
+		float: left;
+	}
+}
+
+/* Main */
+
+main {
+	overflow: auto;
+	padding: 2em;
+	margin: 2em 2em 0em 2em;
+	background-image: url("../images/main_bg.jpg");
+	border: 0.5em solid;
+	border-image: url("../images/main_border.png") 45 45 45 45 repeat repeat;
+	box-shadow: -0.2em 0 0.2em #000, 0 0.2em 0.2em #000, 0.2em 0 0.2em #000, 0 -0.2em 0.2em #000;
+}
+
+section h2 {
+	margin-top: 0em;
+}
+
+article {
+	margin: 2em 0em 4em 0em;
+}
+
+article:last-child {
+	margin-bottom: 0;
+}
+
+em {
+	font-style: normal;
+	font-weight: bold;
+}
+
+.free {
+	color: #008000;
+}
+
+main img {
+	box-shadow: -0.2em 0 0.2em #000, 0 0.2em 0.2em #000, 0.2em 0 0.2em #000, 0 -0.2em 0.2em #000;
+}
+
+main a {
+	text-decoration: underline;
+}
+
+.team, .git, .sources, .badge {
+	margin-top: -0.5em;
+	margin-bottom: 2em;
+}
+
+.badge:last-child {
+	margin-bottom: 0;
+}
+
+.team th, .git th {
+	text-align: left;
+	width: 15em;
+}
+
+.team td {
+	white-space: pre-line;
+}
+
+.sources {
+	border-collapse: collapse;
+}
+
+.sources th, .sources td {
+	border: solid black 0.2em;
+	padding: 1em;
+}
+
+.sources th {
+	background: #5d5346;
+}
+
+.sources .link {
+	word-break: break-all;
+}
+
+.badge {
+	display: inline-block;
+	box-shadow: -0.2em 0 0.2em #000, 0 0.2em 0.2em #000, 0.2em 0 0.2em #000, 0 -0.2em 0.2em #000;
+	margin-right: 2em;
+	background-color: #5d5346;
+}
+
+.badge img {
+	height: 1.5em;
+	box-shadow: none;
+}
+
+#strato {
+	background-color: #f80;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.teleport, #join-group, #follow-on-facebook {
+	display: inline-block;
+	padding: 0.5em;
+	text-align: center;
+	color: #fff;
+	text-decoration: none;
+	background-color: #dd9b41;
+	background-image: url("/images/button.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	font-weight: bold;
+	box-shadow: -0.2em 0 0.2em black, 0 0.2em 0.2em black, 0.2em 0 0.2em black, 0 -0.2em 0.2em black;
+	text-shadow: -0.2em 0 0.2em black, 0 0.2em 0.2em black, 0.2em 0 0.2em black, 0 -0.2em 0.2em black;
+}
+
+.teleport:hover, #join-group:hover, #follow-on-facebook:hover {
+	background-image: url("/images/button_active.jpg");
+}
+
+.teleport {
+	display: block;
+	width: 7em;
+	margin: auto;
+}
+
+.link-bar {
+	text-align: center;
+}
+
+#join-group, #follow-on-facebook {
+	margin: 1em 2em 0;
+}
+
+#join-group::before, #follow-on-facebook::before {
+	content: '';
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin-right: 0.5em;
+}
+
+#join-group::before {
+	background: url("/images/sl_icon.ico");
+	background-size: contain;
+}
+
+#follow-on-facebook::before {
+	background: url("/images/fb_icon.ico");
+	background-size: contain;
+}
+
+.owner span {
+	font-weight: bold;
+}
+
+#nav_link {
+	display: none;
+}
+
+@media (orientation: landscape) {
+	.link-bar {
+		text-align: left;
+	}
+	
+	#join-group {
+		margin-left: 0;
+	}
+}
+
+/* Footer */
+
+footer {
+	text-align: center;
+	width: 100%;
+	overflow: auto;
+}
