@@ -5,6 +5,10 @@
 		<link rel="stylesheet" href="/css/screen.css" media="screen"/>
 		<link rel="stylesheet" href="/css/printer.css" media="print"/>
 		<script src="/js/responsive.js"></script>
+		<?php
+			$season = (new Season())->getName();
+			if (($season == 'winter') || ($season == 'autumn')) echo '<script src="/js/animations/seasons/'.$season.'.js"></script>';
+		?>
 	</head>
 	<body>
 		<header>
