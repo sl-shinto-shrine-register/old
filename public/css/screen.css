@@ -195,7 +195,7 @@ main a {
 	text-decoration: none;
 }
 
-.teleport, #join-group, #follow-on-facebook {
+.teleport, #join-group, #follow-on-facebook, #join-discord {
 	display: inline-block;
 	padding: 0.5em;
 	text-align: center;
@@ -210,7 +210,7 @@ main a {
 	text-shadow: -0.2em 0 0.2em black, 0 0.2em 0.2em black, 0.2em 0 0.2em black, 0 -0.2em 0.2em black;
 }
 
-.teleport:hover, #join-group:hover, #follow-on-facebook:hover {
+.teleport:hover, #join-group:hover, #follow-on-facebook:hover, #join-discord:hover {
 	background-image: url("/images/button_active.jpg");
 }
 
@@ -224,11 +224,11 @@ main a {
 	text-align: center;
 }
 
-#join-group, #follow-on-facebook {
+#join-group, #follow-on-facebook, #join-discord {
 	margin: 1em 2em 0;
 }
 
-#join-group::before, #follow-on-facebook::before {
+#join-group::before, #follow-on-facebook::before, #join-discord::before {
 	content: '';
 	display: inline-block;
 	width: 16px;
@@ -243,6 +243,11 @@ main a {
 
 #follow-on-facebook::before {
 	background: url("/images/fb_icon.ico");
+	background-size: contain;
+}
+
+#join-discord::before {
+	background: url("/images/discord_icon.ico");
 	background-size: contain;
 }
 
