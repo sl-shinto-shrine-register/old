@@ -2,7 +2,9 @@
 	<header>
 		<h3 id="shrine_<?= $article->getID() ?>"><?= $article->getCaption() ?></h3>
 	</header>
-	<img src="<?= $article->getImage() ?>" width="100%">
+	<a class="zoom-in" href="<?= $article->getImage(true) ?>" title="Enlarge image">
+		<img src="<?= $article->getImage() ?>" width="100%">
+	</a>
 	<p><?= $article->getDescription() ?></p>
 	<?php if ($this->displayOwners) { ?>
 		<p class="owner"><span>Owner: </span><a href="<?= $article->getOwner()->getProfileLinkForBrowsers() ?>" target="_blank"><?= $article->getOwner()->getName() ?></a></p>

@@ -269,6 +269,13 @@ main a {
 	}
 }
 
+.zoom-in {
+	cursor: -moz-zoom-in;
+	cursor: -webkit-zoom-in;
+	cursor: zoom-in;
+	cursor: url("/cursors/zoom_in.cur"), auto;
+}
+
 /* Footer */
 
 footer {

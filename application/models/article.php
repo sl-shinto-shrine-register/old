@@ -67,24 +67,33 @@ class Article extends Model
 	/**
 	 * Get image
 	 *
+	 * @param bool $fullResolution Needs to be set to TRUE, if an full resolution image is wanted. Otherwise FALSE (default).
 	 * @return string Image
 	 */
-	public function getImage()
+	public function getImage($fullResolution = false)
 	{
 		// Get Filename
 		$filename = str_replace(' ', '_', $this->getCaption());
-		// Get paths
-		$frontendImageLink = 'images/shrines/small/'.$filename.'.jpg';
-		$sourceImagePath = BASE_DIRECTORY.'/public/images/shrines/'.$filename.'.png';
-		$destinationImagePath = BASE_DIRECTORY.'/public/'.$frontendImageLink;
-		// Check
-		if (!file_exists($destinationImagePath) && file_exists($sourceImagePath)) {
-			// Process
-			$image = Image::createFromFile($sourceImagePath);
-			$image->scale(960, 540);
-			$image->saveToFileAs($destinationImagePath, Image::MIME_TYPE_JPEG, 20);
+		// Get links
+		$smallImageLink = '/images/shrines/small/'.$filename.'.jpg';
+		$originalImageLink = '/images/shrines/'.$filename.'.png';
+		// Check requested image type
+		if ($fullResolution) {
+			return $originalImageLink;
+		} else {
+			// Get path
+			$path = BASE_DIRECTORY.'/public';
+			// Check
+			$sourceImagePath = $path.$originalImageLink;
+			$destinationImagePath = $path.$smallImageLink;
+			if (!file_exists($destinationImagePath) && file_exists($sourceImagePath)) {
+				// Process
+				$image = Image::createFromFile($sourceImagePath);
+				$image->scale(960, 540);
+				$image->saveToFileAs($destinationImagePath, Image::MIME_TYPE_JPEG, 20);
+			}
+			return $smallImageLink;
 		}
-		return '/'.$frontendImageLink;
 	}
 	
 	/**
