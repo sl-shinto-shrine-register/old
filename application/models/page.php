@@ -83,9 +83,7 @@ class Page extends Model
 	 */
 	public function load(string $name, Locale $locale)
 	{
-		if (empty($name)) {
-			$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM '.self::DATABASE_TABLE.' WHERE type = 3 AND locale = \''.$locale->getCurrentLCID().'\'');
-		} elseif ($name == 'random') {
+		if ($name == 'random') {
 			$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM '.self::DATABASE_TABLE.' WHERE type = 0 ORDER BY rand() LIMIT 1');
 		} else {
 			$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM '.self::DATABASE_TABLE.' WHERE name = :name');
