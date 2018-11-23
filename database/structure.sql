@@ -74,7 +74,7 @@ CREATE TABLE `pages` (
   `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` text CHARACTER SET utf8mb4,
   `type` tinyint(4) NOT NULL,
-  `locale` varchar(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `locale` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -88,4 +88,4 @@ CREATE TABLE `pages` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-24  0:15:38
+-- Dump completed on 2018-11-24  0:44:14
