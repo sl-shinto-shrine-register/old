@@ -58,7 +58,7 @@ class Controller
 			// Check for a subpage in the route
 			if (count($route) > 2) {
 				// Try to load the subpage or redirect to the parent page, if failed
-				if (!$this->model->load($route[2])) $this->redirect($route[1]);
+				if (!$this->model->load($route[2])) $this->showNotFoundPage('/'.$route[1], true);
 			} else {
 				// Load the page as normal page
 				if (!$this->model->load($route[1])) $this->showNotFoundPage();
@@ -77,10 +77,14 @@ class Controller
 	
 	/**
 	 * Show 404 Not Found page
+	 * 
+	 * @param string $backUrl One level upper url
+	 * @param bool $subpage Is the missing page a subpage? (Yes: true, default: false)
 	 */
-	protected function showNotFoundPage() {
+	protected function showNotFoundPage($backUrl = '/', $subpage = false) {
 		header('HTTP/1.1 404 Not Found');
-		die ('<html><head><title>404</title></head><body><h1>Page not found.</h1>'."\n".'<p>Please go to the <a href="/">homepage</a>.</body></html>');
+		include BASE_DIRECTORY.'/templates/not-found.phtml';
+		exit;
 	}
 }
 ?>
