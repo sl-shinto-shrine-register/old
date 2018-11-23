@@ -7,15 +7,8 @@
 	$articles = $this->model->getArticles();
 	if (!empty($articles)) {
 		foreach($articles as $article) {
-			echo '   <article>';
-			echo '    <header>';
-			echo '     <h3 id="shrine_'.$article->getID().'">'.$article->getCaption().'</h3>';
-			echo '    </header>';
-			echo '    <img src="'.$article->getImage().'" width="100%">';
-			echo '    <p>'.$article->getDescription().'</p>';
-			if ($this->displayOwners) echo '    <p class="owner"><span>Owner: </span><a href="'.$article->getOwner()->getProfileLinkForBrowsers().'" target="_blank">'.$article->getOwner()->getName().'</a></p>';
-			echo '    <a class="teleport" href="'.$article->getLink().'">Teleport</a>';
-			echo '   </article>';
+			// Article template
+			include 'article.phtml';
 		}
 	}
 	?>
