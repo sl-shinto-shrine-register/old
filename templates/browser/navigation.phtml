@@ -1,16 +1,20 @@
   <nav id="nav">
    <ul class="menu">
 	<?php
-	$pages = $this->model->getPageList(array(1, 2));
+	$pages = $this->model->getPageList(array(
+		Page::PAGE_TYPE_NORMAL, 
+		Page::PAGE_TYPE_CATEGORY, 
+		Page::PAGE_TYPE_DEFAULT
+	));
 	$currentPage = $this->model;
 	foreach ($pages as $page) {
 		echo '<li'.(($currentPage->getID() == $page['id']) ? ' class="active"' : '').'>';
-		echo '<a href="/'.$page['route'].'">'.$page['caption'].'</a>';
+		echo '<a href="'.$this->model->getLocale()->localizeUrl('/'.$page['route']).'">'.$page['caption'].'</a>';
 		if (($page['type'] == Page::PAGE_TYPE_CATEGORY) && ($currentPage->getPageType() == Page::PAGE_TYPE_CATEGORY || $currentPage->getPageType() == Page::PAGE_TYPE_SUBPAGE)) {
 			echo '<ul>';
 			$subPages = $this->model->getPageList(array(0));
 			foreach ($subPages as $subPage) {
-				echo '<li'.(($currentPage->getID() == $subPage['id']) ? ' class="active"' : '').'><a href="/'.$page['route'].'/'.$subPage['route'].'">'.$subPage['caption'].'</a>'."</li>\n";
+				echo '<li'.(($currentPage->getID() == $subPage['id']) ? ' class="active"' : '').'><a href="'.$this->model->getLocale()->localizeUrl('/'.$page['route'].'/'.$subPage['route']).'">'.$subPage['caption'].'</a>'."</li>\n";
 			}
 			echo '</ul>';
 		}

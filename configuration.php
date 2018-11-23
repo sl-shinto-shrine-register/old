@@ -17,6 +17,8 @@ return array(
 'charset' => 'utf-8',
 
 'tasks' => array('UpdateOwners'),
-'display_owners' => TRUE
+'display_owners' => TRUE,
+
+'default_locale' => 'en'
 );
 ?>

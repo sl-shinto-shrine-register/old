@@ -35,6 +35,11 @@ class Application
 	private $view;
 
 	/**
+	 * @var Locale Instance of Locale
+	 */
+	private $locale;
+
+	/**
 	 * @var Controller Instance of Controller
 	 */
 	private $controller;
@@ -76,11 +81,16 @@ class Application
 			$this->configuration->get('charset'),
 			$this->configuration->get('display_owners')
 		);
+		$this->locale = new Locale(
+			$this->database,
+			$this->configuration->get('default_locale')
+		);
 		$this->controller = new Controller(
 			$this->model, 
 			new Request(), 
 			$this->configuration->get('default_client_page'), 
-			$this->configuration->get('default_web_page')
+			$this->configuration->get('default_web_page'),
+			$this->locale
 		);
 	}
 
