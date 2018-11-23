@@ -28,7 +28,7 @@ class Season {
 	/**
 	 * @var array Seasons map.
 	 */
-	protected const MAP = [
+	const MAP = [
 		12 => self::WINTER,
 		1 => self::WINTER,
 		2 => self::WINTER,
