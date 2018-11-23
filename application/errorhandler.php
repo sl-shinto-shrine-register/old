@@ -85,14 +85,14 @@
 	 */
 	public function catchError()
 	{
-		$firstArgument = func_get_arg(0);
-		// Checks if it is a Exception or a Error
-		if (is_a($firstArgument, 'Exception')) {
-			$this->errorCode = $firstArgument->getCode();
-			$this->errorMessage = $firstArgument->getMessage();
-			$this->filename = $firstArgument->getFile();
-			$this->line = $firstArgument->getLine();
-			$this->context = $firstArgument->getTrace();
+		// Checks if it is a Throwable object or an Error
+		$error = func_get_arg(0);
+		if (is_a($error, 'Throwable')) {
+			$this->errorCode = $error->getCode();
+			$this->errorMessage = $error->getMessage();
+			$this->filename = $error->getFile();
+			$this->line = $error->getLine();
+			$this->context = $error->getTrace();
 		} else {
 			$this->errorCode = func_get_arg(0);
 			$this->errorMessage = func_get_arg(1);
