@@ -86,7 +86,13 @@ class Locale extends Model {
 	public function __construct(Database $database, string $defaultLcid) {
 		parent::__construct($database);
 		$this->setDefaultLCID($defaultLcid);
-		$this->setAvailableLCIDs(['en', 'de', 'ja']);
+		$availableLCIDs = [];
+		$statement = $this->database->prepare('SELECT locale FROM '.self::DATABASE_TABLE.' group by locale');
+		$statement->execute();
+		while ($result = $statement->fetch()) {
+			$availableLCIDs[] = $result['locale'];
+		}
+		$this->setAvailableLCIDs($availableLCIDs);
 	}
 	
 	/**
