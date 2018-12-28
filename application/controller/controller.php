@@ -23,7 +23,7 @@ class Controller
 	 * @var string Default web page
 	 */
 	private $web_default;
-	
+
 	/**
 	 * @var Locale Locale.
 	 */
@@ -79,7 +79,7 @@ class Controller
 			$lcid = $this->locale->getCurrentLCID();
 			$this->redirect($lcid.'/'.$this->model->getDefaultPage($lcid));
 			exit;
-		} else {			
+		} else {
 			// Check for a subpage in the route
 			if (count($route) > 2) {
 				// Try to load the subpage or redirect to the parent page, if failed
@@ -90,20 +90,19 @@ class Controller
 			}
 		}
 	}
-	
+
 	/**
 	 * Redirect
-	 * 
+	 *
 	 * @param string $targetPage Target page
 	 */
 	protected function redirect($targetPage) {
-		//die('Location: http://'.$_SERVER['SERVER_NAME'].'/'.$targetPage);
 		header('Location: http://'.$_SERVER['SERVER_NAME'].'/'.$targetPage);
 	}
-	
+
 	/**
 	 * Show 404 Not Found page
-	 * 
+	 *
 	 * @param string $backUrl One level upper url
 	 * @param bool $subpage Is the missing page a subpage? (Yes: true, default: false)
 	 */
