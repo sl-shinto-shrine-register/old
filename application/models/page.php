@@ -8,37 +8,37 @@ class Page extends Model
 	 * @var string Database table
 	 */
 	const DATABASE_TABLE = 'pages';
-	
+
 	/**
 	 * @var int Page type: Default
 	 */
 	const PAGE_TYPE_DEFAULT = 3;
-	
+
 	/**
 	 * @var int Page type: Normal
 	 */
 	const PAGE_TYPE_NORMAL = 1;
-	
+
 	/**
 	 * @var int Page type: Category
 	 */
 	const PAGE_TYPE_CATEGORY = 2;
-	
+
 	/**
 	 * @var int Page type: Subpage
 	 */
 	const PAGE_TYPE_SUBPAGE = 0;
-	
+
 	/**
 	 * @var int Client type: Board
 	 */
 	const CLIENT_TYPE_BOARD = 'board';
-	
+
 	/**
 	 * @var int Client type: Browser
 	 */
 	const CLIENT_TYPE_BROWSER = 'browser';
-	
+
 	/**
 	 * @var string Page caption
 	 */
@@ -48,27 +48,27 @@ class Page extends Model
 	 * @var string Page title
 	 */
 	private $title;
-	
+
 	/**
 	 * @var string Page content
 	 */
 	private $content;
-	
+
 	/**
 	 * @var string Page type
 	 */
 	private $type;
-	
+
 	/**
 	 * @var string Client type
 	 */
 	private $clientType;
-	
+
 	/**
 	 * @var Locale Client locale
 	 */
 	private $locale;
-	
+
 	/**
 	 * @var array Articles, listed on the page
 	 */
@@ -86,8 +86,9 @@ class Page extends Model
 		if ($name == 'random') {
 			$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM '.self::DATABASE_TABLE.' WHERE type = 0 ORDER BY rand() LIMIT 1');
 		} else {
-			$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM '.self::DATABASE_TABLE.' WHERE name = :name');
+			$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM '.self::DATABASE_TABLE.' WHERE name = :name AND locale = :locale');
 			$statement->bindValue(':name', $name, Database::TYPE_STR);
+			$statement->bindValue(':locale', $locale->getCurrentLCID(), Database::TYPE_STR);
 		}
 		$statement->execute();
 		$result = $statement->fetch();
@@ -122,9 +123,9 @@ class Page extends Model
 
 	/**
 	 * Get list of pages
-	 * 
+	 *
 	 * @param int[] $types Page types
-	 * 
+	 *
 	 * @return array Returns an array, containing the IDs, captions and routes of the pages
 	 */
 	public function getPageList(array $types = array())
@@ -146,10 +147,10 @@ class Page extends Model
 		}
 		return $pages;
 	}
-	
+
 	/**
 	 * Get the default page.
-	 * 
+	 *
 	 * @param string $lcid Locale ID.
 	 * @return string Name of the default page.
 	 */
@@ -162,7 +163,7 @@ class Page extends Model
 		}
 		return $result['name'];
 	}
-	
+
 	/**
 	 * Get page caption
 	 *
@@ -182,37 +183,37 @@ class Page extends Model
 	{
 		return $this->title;
 	}
-	
+
 	/**
 	 * Get page content
-	 * 
+	 *
 	 * @return string Page content
 	 */
 	public function getPageContent()
 	{
 		return $this->content;
 	}
-	
+
 	/**
 	 * Get page type
-	 * 
+	 *
 	 * @return string Page type
 	 */
 	public function getPageType()
 	{
 		return $this->type;
 	}
-	
+
 	/**
 	 * Get client type
-	 * 
+	 *
 	 * @return string Client type
 	 */
 	public function getClientType()
 	{
 		return $this->clientType;
 	}
-	
+
 	/**
 	 * Get articles, listed on the page
 	 *
@@ -222,40 +223,40 @@ class Page extends Model
 	{
 		return $this->articles;
 	}
-	
+
 	/**
 	 * Set page type
-	 * 
+	 *
 	 * @param int $pageType Page type
 	 */
 	public function setPageType(int $pageType)
 	{
 		$this->type = $pageType;
 	}
-	
+
 	/**
 	 * Set client type
-	 * 
+	 *
 	 * @param string $clientType Client type
 	 */
 	public function setClientType(string $clientType)
 	{
 		$this->clientType = $clientType;
 	}
-	
+
 	/**
 	 * Set client locale
-	 * 
+	 *
 	 * @param Locale $locale Client locale
 	 */
 	public function setLocale(Locale $locale)
 	{
 		$this->locale = $locale;
 	}
-	
+
 	/**
 	 * Get client locale
-	 * 
+	 *
 	 * @return Locale Client locale
 	 */
 	public function getLocale()
