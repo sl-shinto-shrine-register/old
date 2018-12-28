@@ -8,12 +8,12 @@ class Request
 	 * @var int Client type: Board
 	 */
 	const CLIENT_TYPE_BOARD = 'board';
-	
+
 	/**
 	 * @var int Client type: Browser
 	 */
 	const CLIENT_TYPE_BROWSER = 'browser';
-	
+
 	/**
 	 * @var string User request path
 	 */
@@ -23,14 +23,14 @@ class Request
 	 * @var mixed[] User request variables
 	 */
 	protected $variables;
-	
+
 	/**
 	 * @var string Client type
 	 */
-	protected $clientType; 
+	protected $clientType;
 
 	/**
-     * Creates a new class instance
+	 * Creates a new class instance
 	 */
 	public function __construct()
 	{
@@ -52,12 +52,12 @@ class Request
 	 */
 	private function filter($input)
 	{
-		return preg_replace("/[^0-9a-zA-Z_.\/-]/", "", $input);
+		return filter_var(urldecode($input), FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW);
 	}
 
 	/**
 	 * Get Path
-	 * 
+	 *
 	 * @return string Path
 	 */
 	public function getPath()
@@ -80,7 +80,7 @@ class Request
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Set the client type.
 	 * @param string $clientType Client type.
@@ -89,7 +89,7 @@ class Request
 	{
 		$this->clientType = $clientType;
 	}
-	
+
 	/**
 	 * Get the client type.
 	 * @return string Client type.
@@ -98,7 +98,7 @@ class Request
 	{
 		return $this->clientType;
 	}
-	
+
 	/**
 	 * Detects the client type.
 	 * @return string Returns the client type.
