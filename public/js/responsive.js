@@ -35,12 +35,13 @@ function toggleMenuButton () {
 			menuButton = document.createElement("div");
 			menuButton.setAttribute("id", "menuButton");
 			menuButton.setAttribute("onClick", "toggleMenu(this)");
+			menuButton.setAttribute("title", document.getElementById("nav").getAttribute("title"));
 			var menuButtonBar = document.createElement("div");
 			menuButton.appendChild(menuButtonBar);
 			menuButton.appendChild(menuButtonBar.cloneNode());
 			menuButton.appendChild(menuButtonBar.cloneNode());
 			document.getElementsByTagName("header")[0].appendChild(menuButton);
-			
+
 		}
 		// Hide menu by default
 		document.getElementsByTagName('nav')[0].style.display = "none";
@@ -58,7 +59,7 @@ function toggleMenu (button) {
 	var nav = document.getElementsByTagName('nav')[0];
 	// Detect menu button
 	var menuButton = document.getElementById("menuButton");
-	if (nav.style.display == "none") {	
+	if (nav.style.display == "none") {
 		nav.style.display = "block";
 		menuButton.className = "active";
 	} else {
