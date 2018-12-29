@@ -8,17 +8,17 @@ class View
 	 * @var Model Instance of model
 	 */
 	private $model;
-	
+
 	/**
 	 * @var string Character set
 	 */
 	private $charset;
-	
+
 	/**
 	 * @var bool Display owners
 	 */
 	private $displayOwners;
-	
+
     /**
      * Creates a new class instance
 	 *

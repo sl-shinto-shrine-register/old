@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<!-- Basic meta data -->
 		<?php include BASE_DIRECTORY.'/templates/common/meta.phtml'; ?>
+		<!-- Localized pagelinks -->
+		<?php include 'localized_pagelinks.phtml'; ?>
+		<!-- Stylesheets -->
 		<link rel="stylesheet" href="/css/screen.css" media="screen"/>
 		<link rel="stylesheet" href="/css/printer.css" media="print"/>
+		<!-- Responsive menu helper -->
 		<script src="/js/responsive.js"></script>
+		<!-- Season animations -->
 		<?php
 			$season = (new Season())->getName();
 			if (($season == 'winter') || ($season == 'autumn')) echo '<script src="/js/animations/seasons/'.$season.'.js"></script>';
@@ -18,6 +24,8 @@
 		<nav>
 			<!-- Navigation menu -->
 			<?php include 'navigation.phtml'; ?>
+			<!-- Language switch -->
+			<?php include 'language_switch.phtml'; ?>
 		</nav>
 		<main>
 			<!-- Content -->

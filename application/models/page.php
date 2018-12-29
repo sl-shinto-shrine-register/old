@@ -135,13 +135,12 @@ class Page extends Model
 	 		$statement = $this->database->prepare('SELECT id, name, caption, type FROM '.self::DATABASE_TABLE);
 	 	} else {
 	 		$statement = $this->database->prepare('SELECT id, name, caption, type FROM '.self::DATABASE_TABLE.' WHERE ( type = '.implode(' OR type = ', $types).' ) AND locale = \''.$this->getLocale()->getCurrentLCID().'\'');
-	 		//$statement = $this->database->prepare('SELECT id, name, caption, type FROM '.self::DATABASE_TABLE.' WHERE type = '.implode(' OR type = ', $types));
 	 	}
 		$statement->execute();
 		while ($result = $statement->fetch()) {
 			$page['id'] = $result['id'];
 			$page['caption'] = $result['caption'];
-			$page['route'] = $result['name'];
+			$page['name'] = $result['name'];
 			$page['type'] = $result['type'];
 			$pages[] = $page;
 		}
@@ -162,6 +161,22 @@ class Page extends Model
 			trigger_error('No default page for locale \''.$lcid.'\' found.', E_USER_ERROR);
 		}
 		return $result['name'];
+	}
+
+	/**
+	 * Get URL.
+	 *
+	 * @param string $locale Locale ID.
+	 * @return string URL.
+	 */
+	public function getUrl(string $locale) {
+		$statement = $this->database->prepare('SELECT subpage.name AS page, parentpage.name AS parent FROM '.self::DATABASE_TABLE.' subpage LEFT JOIN '.self::DATABASE_TABLE.' parentpage ON (parentpage.id = subpage.parent_page_id) WHERE (subpage.locale = \''.$locale.'\' AND subpage.group_id = (SELECT group_id FROM '.self::DATABASE_TABLE.' WHERE id = '.$this->getID().'))');
+		$statement->execute();
+		$result = $statement->fetch();
+		if (empty($result)) {
+			trigger_error('No alternate page of \''.$this->getID().'\' for locale \''.$locale.'\' found.', E_USER_ERROR);
+		}
+		return 'http://'.$_SERVER['SERVER_NAME'].'/'.$locale.'/'.((empty($result['parent'])) ? '' : $result['parent'].'/').$result['page'];
 	}
 
 	/**

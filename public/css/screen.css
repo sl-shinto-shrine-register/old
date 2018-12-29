@@ -92,13 +92,30 @@ nav ul.menu a {
 
 nav ul.menu a:hover, nav li.active > a {
 	background-image: url("../images/button_active.jpg");
-	
+
 }
 
 @media (orientation: landscape) {
 	nav {
 		float: left;
 	}
+}
+
+/* Language switch */
+
+#language_switch {
+	list-style-type: none;
+	text-align: center;
+}
+
+#language_switch li {
+	display: inline;
+	margin: 0.5em;
+}
+
+#language_switch img {
+	width: 3em;
+	box-shadow: -0.2em 0 0.2em #000, 0 0.2em 0.2em #000, 0.2em 0 0.2em #000, 0 -0.2em 0.2em #000;
 }
 
 /* Main */
@@ -263,7 +280,7 @@ main a {
 	.link-bar {
 		text-align: left;
 	}
-	
+
 	#join-group {
 		margin-left: 0;
 	}

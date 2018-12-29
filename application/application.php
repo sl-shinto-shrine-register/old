@@ -8,22 +8,22 @@ class Application
 	 * @var Configuration Instance of Configuration
 	 */
 	private $configuration;
-	
+
 	/**
 	 * @var ErrorHandler Instance of ErrorHandler
 	 */
 	private $errorHandler;
-	
+
 	/**
 	 * @var Database Instance of Database
 	 */
 	private $database;
-	
+
 	/**
 	 * @var Scheduler Instance of Scheduler
 	 */
 	private $scheduler;
-	
+
 	/**
 	 * @var Page Instance of Page
 	 */
@@ -55,18 +55,18 @@ class Application
 			BASE_DIRECTORY.'/configuration.php'
 		);
 		$this->errorHandler = new ErrorHandler(
-			$this->configuration->get('debug'), 
-			$this->configuration->get('webmaster'), 
-			$this->configuration->get('webmaster_email'), 
-			$this->configuration->get('project_name'), 
+			$this->configuration->get('debug'),
+			$this->configuration->get('webmaster'),
+			$this->configuration->get('webmaster_email'),
+			$this->configuration->get('project_name'),
 			$this->configuration->get('charset')
 		);
 		$this->database = new Database(
-			$this->configuration->get('database_host'), 
-			$this->configuration->get('database_port'), 
-			$this->configuration->get('database_db'), 
+			$this->configuration->get('database_host'),
+			$this->configuration->get('database_port'),
+			$this->configuration->get('database_db'),
 			$this->configuration->get('database_charset'),
-			$this->configuration->get('database_user'), 
+			$this->configuration->get('database_user'),
 			$this->configuration->get('database_password')
 		);
 		$this->scheduler = new Scheduler(
@@ -76,19 +76,19 @@ class Application
 		$this->model = new Page(
 			$this->database
 		);
-		$this->view = new View(
-			$this->model, 
-			$this->configuration->get('charset'),
-			$this->configuration->get('display_owners')
-		);
 		$this->locale = new Locale(
 			$this->database,
 			$this->configuration->get('default_locale')
 		);
+		$this->view = new View(
+			$this->model,
+			$this->configuration->get('charset'),
+			$this->configuration->get('display_owners')
+		);
 		$this->controller = new Controller(
-			$this->model, 
-			new Request(), 
-			$this->configuration->get('default_client_page'), 
+			$this->model,
+			new Request(),
+			$this->configuration->get('default_client_page'),
 			$this->configuration->get('default_web_page'),
 			$this->locale
 		);
