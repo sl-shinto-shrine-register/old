@@ -143,4 +143,16 @@ class Locale extends Model {
 		if ($currentLCID != $this->getDefaultLCID()) return '/'.strtolower(str_replace('_', '-', $currentLCID)).$url;
 		return $url;
 	}
+
+	/**
+	 * Get the language code of a locale ID.
+	 *
+	 * @param string $lcid Locale ID.
+	 * @return string Language code.
+	 */
+	static function getLanguageCode(string $lcid) {
+		$delimiter = strpos($lcid, '_');
+		if ($delimiter === FALSE) return $lcid;
+		return strtolower(substr($lcid, 0, $delimiter));
+	}
 }
