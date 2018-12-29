@@ -1,11 +1,12 @@
     <?php
-        $locales = $this->model->getLocale()->getAvailableLCIDs();
-        $currentLocale = $this->model->getLocale()->getCurrentLCID();
+        $locale = $this->model->getLocale();
+        $availableLocales = $locale->getAvailableLCIDs();
+        $currentLocale = $locale->getCurrentLCID();
     ?>
     <ul id="language_switch">
-        <?php foreach ($locales as $locale => $description) { ?>
-            <?php if ($locale != $currentLocale) { ?>
-                <li><a href="<?= $this->model->getUrl($locale); ?>" title="<?= $description ?>"><img src="/images/languages/<?= $locale ?>.png" alt="<?= $description ?>"></a></li>
+        <?php foreach ($availableLocales as $lcid => $description) { ?>
+            <?php if ($lcid != $currentLocale) { ?>
+                <li><a href="<?= $this->model->getUrl($lcid); ?>" lang="<?= $locale->getLanguageCode($lcid); ?>" hreflang="<?= $lcid ?>" title="<?= $description ?>"><img src="/images/languages/<?= $lcid ?>.png" lang="<?= $locale->getLanguageCode($lcid); ?>" alt="<?= $description ?>"></a></li>
             <?php } ?>
         <?php } ?>
     </ul>
