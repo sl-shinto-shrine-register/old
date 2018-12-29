@@ -61,7 +61,11 @@ class Locale extends Model {
 	 * @return string Returns the current locale ID.
 	 */
 	public function getCurrentLCID() {
-		return $this->currentLcid;
+		if (empty($this->currentLcid)) {
+			return $this->defaultLcid;
+		} else {
+			return $this->currentLcid;
+		}	
 	}
 
 	/**
@@ -154,5 +158,25 @@ class Locale extends Model {
 		$delimiter = strpos($lcid, '_');
 		if ($delimiter === FALSE) return $lcid;
 		return strtolower(substr($lcid, 0, $delimiter));
+	}
+
+	/**
+	 * Detect the language by it's typical characters.
+	 * Source: https://stackoverflow.com/questions/2856942/how-to-check-if-the-word-is-japanese-or-english-using-php
+	 *
+	 * @param string $text Text.
+	 * @return string Language ID.
+	 */
+	static function detectLanguage(string $text) {
+		// Japanese
+		$containsKanji = (preg_match('/[\x{4E00}-\x{9FBF}]/u', $text) > 0);
+		$containsHiragana = (preg_match('/[\x{3040}-\x{309F}]/u', $text) > 0);
+		$containsKatakana = (preg_match('/[\x{30A0}-\x{30FF}]/u', $text) > 0);
+		if ($containsKanji || $containsHiragana || $containsKatakana) return 'ja';
+		// German
+		$containsUmlauts = (preg_match('/[\x{00C4}\x{00D6}\x{00DC}\x{00E4}\x{00F6}\x{00FC}\x{00DF}\x{1E9E}]/u', $text) > 0);
+		if ($containsUmlauts) return 'de';
+		// English
+		return 'en';
 	}
 }

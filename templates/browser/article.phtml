@@ -7,7 +7,7 @@
 	</a>
 	<p><?= $article->getDescription() ?></p>
 	<?php if ($this->displayOwners) { ?>
-		<p class="owner"><span>Owner: </span><a href="<?= $article->getOwner()->getProfileLinkForBrowsers() ?>" target="_blank"><?= $article->getOwner()->getName() ?></a></p>
+		<p class="owner"><span>Owner: </span><a href="<?= $article->getOwner()->getProfileLinkForBrowsers() ?>" lang="<?= $this->model->getLocale()->detectLanguage($article->getOwner()->getName()); ?>" target="_blank"><?= $article->getOwner()->getName() ?></a></p>
 	<?php } ?>
 	<a class="teleport" href="<?= $article->getLink() ?>">Teleport</a>
 </article>

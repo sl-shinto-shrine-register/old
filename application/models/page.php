@@ -101,7 +101,7 @@ class Page extends Model
 		$this->title = $result['title'];
 		$this->content = $result['content'];
 		$this->type = $result['type'];
-		$this->locale = $locale;
+		$this->setLocale($locale);
 		$this->loadArticles();
 		return TRUE;
 	}
@@ -116,7 +116,7 @@ class Page extends Model
 		$statement->execute();
 		while ($result = $statement->fetch()) {
 			$article = new Article($this->database);
-			$article->load($result['article_id']);
+			$article->load($result['article_id'], $this->getLocale());
 			$this->articles[] = $article;
 		}
 	}
@@ -264,8 +264,7 @@ class Page extends Model
 	 *
 	 * @param Locale $locale Client locale
 	 */
-	public function setLocale(Locale $locale)
-	{
+	public function setLocale(Locale $locale) {
 		$this->locale = $locale;
 	}
 
@@ -274,8 +273,7 @@ class Page extends Model
 	 *
 	 * @return Locale Client locale
 	 */
-	public function getLocale()
-	{
+	public function getLocale() {
 		return $this->locale;
 	}
 }
