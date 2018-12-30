@@ -8,8 +8,9 @@ The Second Life Shinto Shrine Register (SLSR) is a association of Shinto shrines
 Requirements
 ------------
 * PHP 7
-* php-dom
+* php-xml
 * php-gd
+* php-gettext
 
 Intall notes
 ------------

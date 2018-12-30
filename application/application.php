@@ -78,7 +78,8 @@ class Application
 		);
 		$this->locale = new Locale(
 			$this->database,
-			$this->configuration->get('default_locale')
+			$this->configuration->get('default_locale'),
+			$this->configuration->get('charset')
 		);
 		$this->view = new View(
 			$this->model,

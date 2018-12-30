@@ -14,6 +14,16 @@ class Locale extends Model {
 	const DATABASE_TABLE_PAGES = 'pages';
 
 	/**
+	 * @var string Gettext domain.
+	 */
+	const GETTEXT_DOMAIN = 'main';
+
+	/**
+	 * @var string Gettext locales directory.
+	 */
+	const GETTEXT_LOCALES_DIRECTORY = BASE_DIRECTORY.DIRECTORY_SEPARATOR.'locales';
+
+	/**
 	 * @var string Default locale ID.
 	 */
 	protected $defaultLcid;
@@ -27,6 +37,11 @@ class Locale extends Model {
 	 * @var string[] Available locale ID's.
 	 */
 	protected $availableLcids = [];
+
+	/**
+	 * @var string Charset.
+	 */
+	protected $charset;
 
 	/**
 	 * Set the default locale ID.
@@ -53,6 +68,7 @@ class Locale extends Model {
 	 */
 	public function setCurrentLCID(string $lcid) {
 		$this->currentLcid = $lcid;
+		$this->initializeGettext(self::GETTEXT_DOMAIN, self::GETTEXT_LOCALES_DIRECTORY, $this->getCharset(), $lcid);
 	}
 
 	/**
@@ -61,11 +77,7 @@ class Locale extends Model {
 	 * @return string Returns the current locale ID.
 	 */
 	public function getCurrentLCID() {
-		if (empty($this->currentLcid)) {
-			return $this->defaultLcid;
-		} else {
-			return $this->currentLcid;
-		}	
+		return $this->currentLcid;
 	}
 
 	/**
@@ -87,15 +99,51 @@ class Locale extends Model {
 	}
 
 	/**
+	 * Sets the charset.
+	 *
+	 * @param string $charset Charset.
+	 */
+	public function setCharset(string $charset) {
+		$this->charset = $charset;
+	}
+
+	/**
+	 * Gets the charset.
+	 *
+	 * @return string Charset.
+	 */
+	public function getCharset() {
+		return $this->charset;
+	}
+
+	/**
 	 * Class constructor.
 	 *
 	 * @param Database $database Database connection.
 	 * @param string $defaultLcid Default locale ID.
+	 * @param string $charset Charset.
 	 */
-	public function __construct(Database $database, string $defaultLcid) {
+	public function __construct(Database $database, string $defaultLcid, string $charset) {
 		parent::__construct($database);
+		$this->setCharset($charset);
 		$this->setDefaultLCID($defaultLcid);
+		$this->setCurrentLCID($defaultLcid);
 		$this->setAvailableLCIDs($this->loadAvailableLCIDs($database));
+	}
+
+	/**
+	 * Initialize Getttext.
+	 *
+	 * @param string $domain Gettext domain.
+	 * @param string $localesDirectory Gettext locales directory.
+	 * @param string $charset Charset.
+	 * @param string $lcid Locale ID.
+	 */
+	protected function initializeGettext(string $domain, string $localesDirectory, string $charset, string $lcid) {
+		setlocale(LC_ALL, 'C.'.strtoupper($charset));
+		bindtextdomain($domain, $localesDirectory.DIRECTORY_SEPARATOR.$lcid);
+		bind_textdomain_codeset($domain, $charset);
+		textdomain($domain);
 	}
 
 	/**
@@ -130,9 +178,7 @@ class Locale extends Model {
 		}
 		$lcid = implode('_', $lcid);
 		// Check
-		$availableLCIDs = $this->getAvailableLCIDs();
-		// Decide
-		if (array_key_exists($lcid, $availableLCIDs)) return $lcid;
+		if (array_key_exists($lcid, $this->getAvailableLCIDs())) return $lcid;
 		return '';
 	}
 

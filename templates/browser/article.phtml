@@ -2,12 +2,12 @@
 	<header>
 		<h3 id="shrine_<?= $article->getID() ?>"><?= $article->getCaption() ?></h3>
 	</header>
-	<a class="zoom-in" href="<?= $article->getImage(true) ?>" title="Enlarge image">
+	<a class="zoom-in" href="<?= $article->getImage(true) ?>" title="<?= _("enlarge-image-title"); ?>">
 		<img src="<?= $article->getImage() ?>" width="100%">
 	</a>
 	<p><?= $article->getDescription() ?></p>
 	<?php if ($this->displayOwners) { ?>
-		<p class="owner"><span>Owner: </span><a href="<?= $article->getOwner()->getProfileLinkForBrowsers() ?>" lang="<?= $this->model->getLocale()->detectLanguage($article->getOwner()->getName()); ?>" target="_blank"><?= $article->getOwner()->getName() ?></a></p>
+		<p class="owner"><span><?= _("shrine-owner-caption"); ?>: </span><a href="<?= $article->getOwner()->getProfileLinkForBrowsers() ?>" lang="<?= $this->model->getLocale()->detectLanguage($article->getOwner()->getName()); ?>" target="_blank" title="<?= _("shrine-owner-profile-link-title"); ?>"><?= $article->getOwner()->getName() ?></a></p>
 	<?php } ?>
-	<a class="teleport" href="<?= $article->getLink() ?>">Teleport</a>
+	<a class="teleport" href="<?= $article->getLink() ?>" title="<?= _("teleport-link-title"); ?>"><?= _("teleport-link-caption"); ?></a>
 </article>
