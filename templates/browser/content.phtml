@@ -1,6 +1,6 @@
    <section>
    	<header>
-   		<h2><?= (($this->model->getPageType() == Page::PAGE_TYPE_CATEGORY || $this->model->getPageType() == Page::PAGE_TYPE_SUBPAGE) ? $this->model->getPageTitle() : $this->model->getPageCaption()) ?></h2>
+   		<h2><?= $this->model->getPageCaption(); ?></h2>
    	</header>
     <?php
     echo $this->model->getPageContent();
