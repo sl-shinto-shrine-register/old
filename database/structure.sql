@@ -25,11 +25,11 @@ DROP TABLE IF EXISTS `articles`;
 CREATE TABLE `articles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `caption_en` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description_en` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description_en` text COLLATE utf8mb4_unicode_ci,
   `link` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `owner_id` varchar(36) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `caption_de` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `caption_ja` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `caption_de` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `caption_ja` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description_de` text COLLATE utf8mb4_unicode_ci,
   `description_ja` text COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`)
@@ -93,9 +93,9 @@ CREATE TABLE `pages` (
   `type` tinyint(4) NOT NULL,
   `locale` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
   `parent_page_id` int(11) DEFAULT '0',
-  `group_id` int(11) DEFAULT '0',
+  `group_id` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111,4 +111,4 @@ CREATE TABLE `pages` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-29 16:19:32
+-- Dump completed on 2018-12-31  4:06:04
