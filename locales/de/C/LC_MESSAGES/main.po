@@ -1,0 +1,56 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: SLSR\n"
+"POT-Creation-Date: 2018-12-30 14:45+0100\n"
+"PO-Revision-Date: 2018-12-30 15:18+0100\n"
+"Last-Translator: \n"
+"Language-Team: Vivien Richter\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ../../../../templates/browser\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: header.phtml\n"
+"X-Poedit-SearchPath-1: navigation.phtml\n"
+"X-Poedit-SearchPath-2: page.phtml\n"
+"X-Poedit-SearchPath-3: footer.phtml\n"
+"X-Poedit-SearchPath-4: article.phtml\n"
+
+#: article.phtml:5
+msgid "enlarge-image-title"
+msgstr "Bild vergrößern"
+
+#: article.phtml:10
+msgid "shrine-owner-caption"
+msgstr "Eigentümer"
+
+#: article.phtml:10
+msgid "shrine-owner-profile-link-title"
+msgstr "Profil des Schrein-Eigentümers besuchen"
+
+#: article.phtml:12
+msgid "teleport-link-title"
+msgstr "Zum Schrein teleportieren"
+
+#: article.phtml:12
+msgid "teleport-link-caption"
+msgstr "Teleport"
+
+#: footer.phtml:1 header.phtml:3
+msgid "project-name"
+msgstr "Second Life Schrein-Register"
+
+#: header.phtml:2
+msgid "alternate-project-logo-text"
+msgstr "Rotes hachiman torii als Logo"
+
+#: navigation.phtml:1
+msgid "navigation-menu-title"
+msgstr "Navigationsmenü"
+
+#: page.phtml:33
+msgid "navigation-menu-link"
+msgstr "Zum Navigationsmenü scrollen"

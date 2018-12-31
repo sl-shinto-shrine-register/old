@@ -1,0 +1,4 @@
+<?php $locales = $this->model->getLocale()->getAvailableLCIDs();
+foreach ($locales as $locale => $description) { ?>
+    <link rel="alternate" hreflang="<?= $locale ?>" href="<?= $this->model->getUrl($locale); ?>" />
+<?php } ?>

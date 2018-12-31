@@ -10,6 +10,7 @@ Requirements
 * PHP 7
 * php-xml
 * php-gd
+* php-gettext
 
 Intall notes
 ------------

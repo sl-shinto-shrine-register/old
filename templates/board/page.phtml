@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
- <head>
-  <?php include BASE_DIRECTORY.'/templates/common/meta.phtml'; ?>
-  <link rel="stylesheet" href="/css/board.css" media="screen"/>
- </head>
- <body>
-  <main>
-   <?php include BASE_DIRECTORY.'/templates/board/content.phtml'; ?>
-  </main>
- </body>
+<html lang="<?= $this->model->getLocale()->getLanguageCode($this->model->getLocale()->getCurrentLCID()) ?>">
+    <head>
+        <!-- Basic meta data -->
+        <?php include BASE_DIRECTORY.'/templates/common/meta.phtml'; ?>
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="/css/board.css" media="screen"/>
+    </head>
+    <body>
+        <main>
+            <!-- Content -->
+            <?php include BASE_DIRECTORY.'/templates/board/content.phtml'; ?>
+        </main>
+    </body>
 </html>
