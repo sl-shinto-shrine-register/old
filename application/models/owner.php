@@ -130,7 +130,7 @@ class Owner extends Model {
 		if (empty($result)) {
 			return null;
 		}
-		return new self($database, $result['id'], new Locale($database, 'en'));
+		return new self($database, $result['id'], new Locale($database, 'en', 'utf-8'));
 	}
 
 	/**
