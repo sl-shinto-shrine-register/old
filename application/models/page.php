@@ -65,7 +65,7 @@ class Page extends Model
 	private $clientType;
 
 	/**
-	 * @var Locale Client locale
+	 * @var SimpleLocale Client locale
 	 */
 	private $locale;
 
@@ -78,10 +78,10 @@ class Page extends Model
 	 * Load page data
 	 *
 	 * @param string $name Page name
-	 * @param Locale $locale Locale
+	 * @param SimpleLocale $locale Locale
 	 * @return bool Returns TRUE, if the page exists. Otherwise FALSE.
 	 */
-	public function load(string $name, Locale $locale)
+	public function load(string $name, SimpleLocale $locale)
 	{
 		if ($name == 'random') {
 			$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM '.self::DATABASE_TABLE.' WHERE type = 0 ORDER BY rand() LIMIT 1');
@@ -262,16 +262,16 @@ class Page extends Model
 	/**
 	 * Set client locale
 	 *
-	 * @param Locale $locale Client locale
+	 * @param SimpleLocale $locale Client locale
 	 */
-	public function setLocale(Locale $locale) {
+	public function setLocale(SimpleLocale $locale) {
 		$this->locale = $locale;
 	}
 
 	/**
 	 * Get client locale
 	 *
-	 * @return Locale Client locale
+	 * @return SimpleLocale Client locale
 	 */
 	public function getLocale() {
 		return $this->locale;

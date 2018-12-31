@@ -35,7 +35,7 @@ class Application
 	private $view;
 
 	/**
-	 * @var Locale Instance of Locale
+	 * @var SimpleLocale Instance of SimpleLocale
 	 */
 	private $locale;
 
@@ -76,7 +76,7 @@ class Application
 		$this->model = new Page(
 			$this->database
 		);
-		$this->locale = new Locale(
+		$this->locale = new SimpleLocale(
 			$this->database,
 			$this->configuration->get('default_locale'),
 			$this->configuration->get('charset')

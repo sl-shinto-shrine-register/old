@@ -2,7 +2,7 @@
 /*
  * Owner class
  */
-class Locale extends Model {
+class SimpleLocale extends Model {
 	/**
 	 * @var string Locales database table
 	 */

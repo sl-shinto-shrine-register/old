@@ -24,7 +24,7 @@ class Owner extends Model {
 	protected $lastUpdate;
 
 	/**
-	 * @var Locale Client locale
+	 * @var SimpleLocale Client locale
 	 */
 	protected $locale;
 
@@ -83,16 +83,16 @@ class Owner extends Model {
 	/**
 	 * Set client locale
 	 *
-	 * @param Locale $locale Client locale
+	 * @param SimpleLocale $locale Client locale
 	 */
-	public function setLocale(Locale $locale) {
+	public function setLocale(SimpleLocale $locale) {
 		$this->locale = $locale;
 	}
 
 	/**
 	 * Get client locale
 	 *
-	 * @return Locale Client locale
+	 * @return SimpleLocale Client locale
 	 */
 	public function getLocale() {
 		return $this->locale;
@@ -103,9 +103,9 @@ class Owner extends Model {
 	 *
 	 * @param Database $database Database connection.
 	 * @param string $uuid Owner UUID.
-	 * @param Locale $locale Locale.
+	 * @param SimpleLocale $locale Locale.
 	 */
-	public function __construct(Database $database, string $uuid, Locale $locale) {
+	public function __construct(Database $database, string $uuid, SimpleLocale $locale) {
 		parent::__construct($database);
 		$this->setUUID($uuid);
 		$this->setLocale($locale);
@@ -130,7 +130,7 @@ class Owner extends Model {
 		if (empty($result)) {
 			return null;
 		}
-		return new self($database, $result['id'], new Locale($database, 'en', 'utf-8'));
+		return new self($database, $result['id'], new SimpleLocale($database, 'en', 'utf-8'));
 	}
 
 	/**

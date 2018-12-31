@@ -38,10 +38,10 @@ class Article extends Model
 	 * Load article data
 	 *
 	 * @param int $id Identifier.
-	 * @param Locale $locale Locale.
+	 * @param SimpleLocale $locale Locale.
 	 * @return bool TRUE on success or FALSE on failure.
 	 */
-	public function load($id, Locale $locale) {
+	public function load($id, SimpleLocale $locale) {
 		$lcid = $locale->getCurrentLCID();
 		$statement = $this->database->prepare('SELECT caption_en, caption_'.$lcid.', description_'.$lcid.', link, owner_id FROM '.self::DATABASE_TABLE.' WHERE id = :id');
 		$statement->bindValue(':id', $id, Database::TYPE_INT);
