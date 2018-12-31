@@ -1,5 +1,5 @@
 var speed=40; // lower number for faster
-var leaves=20; // number of leaves falling at a time
+var leaves=10; // number of leaves falling at a time
 var untidy=4; // how often do you want the leaves tidied up (high number is less often)
 
 /****************************\
@@ -50,7 +50,7 @@ function september_21() { if (document.getElementById) {
   if (ie_version) {
     document.onfocusin=function(){has_focus=true;};
     document.onfocusout=function(){has_focus=false;};
-  } 
+  }
   else {
     window.onfocus=function(){has_focus=true;};
     window.onblur=function(){has_focus=false;};
@@ -67,7 +67,7 @@ function september_21() { if (document.getElementById) {
   boddie.style.backgroundColor="transparent";
   boddie.style.pointerEvents="none";
   boddie.style.zIndex="0";
-  document.body.insertBefore(boddie, document.body.firstChild); 
+  document.body.insertBefore(boddie, document.body.firstChild);
   set_width();
   plow.style.position="absolute";
   plow.style.overflow="hidden";
@@ -96,9 +96,9 @@ function start_leaf(whyp) {
   leafy[starty]=f;
   boddie.appendChild(f);
 }
-  
+
 function start_fall(i, whyp) {
-  var size=72-Math.floor(36*Math.random());
+  var size=38-Math.floor(18*Math.random());
   dx[i]=Math.random();
   am[i]=8+Math.random()*24;
   dy[i]=1+Math.random()*2;
@@ -116,7 +116,7 @@ function set_width() {
   }
   else if (document.compatMode=="CSS1Compat" && document.documentElement && document.documentElement.clientWidth) {
     sw=document.documentElement.clientWidth;
-    sh=document.documentElement.clientHeight; 
+    sh=document.documentElement.clientHeight;
   }
   else {
     sw=document.body.clientWidth;

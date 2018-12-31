@@ -1,7 +1,7 @@
 var speed=40; // lower number for faster
-var flakes=33; // number of flakes falling at a time
-var untidy=8; // how often do you want the flakes tidied up (high number is less often)
-var sizes=36; // maximum size of flakes in pixels
+var flakes=15; // number of flakes falling at a time
+var untidy=4; // how often do you want the flakes tidied up (high number is less often)
+var sizes=20; // maximum size of flakes in pixels
 var colour='#f7f7f7'; // colour of the snowflakes
 
 /****************************\
@@ -49,7 +49,7 @@ function december_21() { if (document.getElementById) {
   if (ie_version) {
     document.onfocusin=function(){has_focus=true;};
     document.onfocusout=function(){has_focus=false;sleft=0;};
-  } 
+  }
   else {
     window.onfocus=function(){has_focus=true;};
     window.onblur=function(){has_focus=false;sleft=0;};
@@ -66,7 +66,7 @@ function december_21() { if (document.getElementById) {
   boddie.style.backgroundColor="transparent";
   boddie.style.pointerEvents="none";
   boddie.style.zIndex="0";
-  document.body.insertBefore(boddie, document.body.firstChild); 
+  document.body.insertBefore(boddie, document.body.firstChild);
   set_width();
   plow.style.position="absolute";
   plow.style.overflow="hidden";
@@ -101,7 +101,7 @@ function freeze_ice(whyp) {
   flaky[starty]=f;
   boddie.appendChild(f);
 }
-  
+
 function start_fall(i, whyp) {
   fs[i]=Math.floor(sizes*(.25+.75*Math.random()));
   dx[i]=Math.random();
@@ -120,7 +120,7 @@ function set_width() {
   }
   else if (document.compatMode=="CSS1Compat" && document.documentElement && document.documentElement.clientWidth) {
     sw=document.documentElement.clientWidth;
-    sh=document.documentElement.clientHeight; 
+    sh=document.documentElement.clientHeight;
   }
   else {
     sw=document.body.clientWidth;
