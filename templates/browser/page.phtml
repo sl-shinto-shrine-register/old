@@ -13,7 +13,7 @@
 		<!-- Season animations -->
 		<?php
 			$season = (new Season())->getName();
-			if (($season == 'winter') || ($season == 'autumn')) echo '<script src="/js/animations/seasons/'.$season.'.js"></script>';
+			if ($season != 'summer') echo '<script src="/js/animations/seasons/'.$season.'.js"></script>';
 		?>
 	</head>
 	<body>
