@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://slsr.org/about</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://slsr.org/de/%c3%bcber" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://slsr.org/ja/%e6%a1%88%e5%86%85" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://slsr.org/about" />
+  </url>
+  <url>
+    <loc>https://slsr.org/imprint</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://slsr.org/de/impressum" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://slsr.org/ja/%E5%BD%93%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://slsr.org/imprint" />
+  </url>
+  <url>
+    <loc>https://slsr.org/shrines</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://slsr.org/de/schreine" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://slsr.org/ja/%e7%a5%9e%e7%a4%be" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://slsr.org/shrines" />
+  </url>
+  <url>
+    <loc>https://slsr.org/shrines/amaterasu</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://slsr.org/de/schreine/amaterasu" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://slsr.org/ja/%E7%A5%9E%E7%A4%BE/%E5%A4%A9%E7%85%A7%E5%A4%A7%E7%A5%9E" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://slsr.org/shrines/amaterasu" />
+  </url>
+  <url>
+    <loc>https://slsr.org/shrines/inari</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://slsr.org/de/schreine/inari" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://slsr.org/ja/%e7%a5%9e%e7%a4%be/%e7%a8%b2%e8%8d%b7%e7%a5%9e" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://slsr.org/shrines/inari" />
+  </url>
+  <url>
+    <loc>https://slsr.org/shrines/susanoo</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://slsr.org/de/schreine/susanoo" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://slsr.org/ja/%E7%A5%9E%E7%A4%BE/%E9%A0%88%E4%BD%90%E4%B9%8B%E7%94%B7%E5%91%BD" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://slsr.org/shrines/susanoo" />
+  </url>
+  <url>
+    <loc>https://slsr.org/shrines/inada</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://slsr.org/de/schreine/inada" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://slsr.org/ja/%e7%a5%9e%e7%a4%be/%e5%a5%87%e7%a8%b2%e7%94%b0%e5%a7%ab" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://slsr.org/shrines/inada" />
+  </url>
+  <url>
+    <loc>https://slsr.org/shrines/uzume</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://slsr.org/de/schreine/uzume" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://slsr.org/ja/%E7%A5%9E%E7%A4%BE/%E5%A4%A9%E9%88%BF%E5%A5%B3%E5%91%BD" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://slsr.org/shrines/uzume" />
+  </url>
+  <url>
+    <loc>https://slsr.org/shrines/benzaiten</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://slsr.org/de/schreine/benzaiten" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://slsr.org/ja/%e7%a5%9e%e7%a4%be/%e5%bc%81%e6%89%8d%e5%a4%a9" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://slsr.org/shrines/benzaiten" />
+  </url>
+  <url>
+    <loc>https://slsr.org/shrines/hachiman</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://slsr.org/de/schreine/hachiman" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://slsr.org/ja/%E7%A5%9E%E7%A4%BE/%E5%85%AB%E5%B9%A1%E7%A5%9E" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://slsr.org/shrines/hachiman" />
+  </url>
+  <url>
+    <loc>https://slsr.org/shrines/other</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://slsr.org/de/schreine/andere" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://slsr.org/ja/%e7%a5%9e%e7%a4%be/%e3%81%9d%e3%81%ae%e4%bb%96" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://slsr.org/shrines/other" />
+  </url>
+</urlset>
