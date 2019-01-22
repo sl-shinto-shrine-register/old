@@ -89,6 +89,8 @@ CREATE TABLE `pages` (
   `name` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `caption` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `keywords` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `content` text CHARACTER SET utf8mb4,
   `type` tinyint(4) NOT NULL,
   `locale` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -111,4 +113,4 @@ CREATE TABLE `pages` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-31  4:06:04
+-- Dump completed on 2019-01-22 19:51:10

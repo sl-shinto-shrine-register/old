@@ -50,6 +50,16 @@ class Page extends Model
 	private $title;
 
 	/**
+	 * @var string Page description
+	 */
+	private $description;
+
+	/**
+	 * @var string Page keywords
+	 */
+	private $keywords;
+
+	/**
 	 * @var string Page content
 	 */
 	private $content;
@@ -84,9 +94,9 @@ class Page extends Model
 	public function load(string $name, SimpleLocale $locale)
 	{
 		if ($name == 'random') {
-			$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM '.self::DATABASE_TABLE.' WHERE type = 0 ORDER BY rand() LIMIT 1');
+			$statement = $this->database->prepare('SELECT id, caption, title, description, keywords, content, type FROM '.self::DATABASE_TABLE.' WHERE type = 0 ORDER BY rand() LIMIT 1');
 		} else {
-			$statement = $this->database->prepare('SELECT id, caption, title, content, type FROM '.self::DATABASE_TABLE.' WHERE name = :name AND locale = :locale');
+			$statement = $this->database->prepare('SELECT id, caption, title, description, keywords, content, type FROM '.self::DATABASE_TABLE.' WHERE name = :name AND locale = :locale');
 			$statement->bindValue(':name', $name, Database::TYPE_STR);
 			$statement->bindValue(':locale', $locale->getCurrentLCID(), Database::TYPE_STR);
 		}
@@ -99,6 +109,8 @@ class Page extends Model
 		$this->id = $result['id'];
 		$this->caption = $result['caption'];
 		$this->title = $result['title'];
+		$this->description = $result['description'];
+		$this->keywords = $result['keywords'];
 		$this->content = $result['content'];
 		$this->type = $result['type'];
 		$this->setLocale($locale);
@@ -197,6 +209,24 @@ class Page extends Model
 	public function getPageTitle()
 	{
 		return $this->title;
+	}
+
+	/**
+	 * Get page description.
+	 *
+	 * @return string Page description.
+	 */
+	public function getPageDescription() {
+		return $this->description;
+	}
+
+	/**
+	 * Get page keywords.
+	 *
+	 * @return string Page keywords.
+	 */
+	public function getPageKeywords() {
+		return $this->keywords;
 	}
 
 	/**
