@@ -15,9 +15,15 @@ Requirements
 
 Intall notes
 ------------
-* The database dump needs to be imported at first
 * The application needs write access for the directory `/public/images/shrines/small`.
 * The shrine images in `/public/images/shrines` needs to have the complete shrine name, with underscores instead of spaces, as file name (expecting *.png files).
+* Also the database structure from `/database/structure.sql` and the business data (see: https://github.com/sl-shinto-shrine-register/v1-data.git) needs to be imported.
+
+License
+-------
+This project is free software under the terms of the GNU General Public License v3 as published by the Free Software Foundation.
+It is distributed WITHOUT ANY WARRANTY (without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE).
+For more details please see the LICENSE file or: http://www.gnu.org/licenses
 
 Credits
 -------
