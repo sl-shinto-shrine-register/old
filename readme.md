@@ -1,5 +1,6 @@
-Second Life Shinto shrine register (SLSR) [Old version]
-=======================================================
+Second Life Shinto shrine register (SLSR)
+=========================================
+[![Chat](https://discordapp.com/api/guilds/491727805885710336/widget.png?style=shield)](https://discord.gg/AeY5654)
 
 About
 -----
@@ -20,6 +21,6 @@ Intall notes
 
 Credits
 -------
-* Homepage: slsr.org
-* Author: Vivien Richter <vivien-richter@outlook.de>
-* Git repository: https://github.com/vivi90/old.slsr.git
+* Homepage: https://www.slsr.org
+* Author: Vivien Richter <vivien@slsr.org>
+* Git repository: https://github.com/sl-shinto-shrine-register/v1.git
