@@ -72,7 +72,7 @@ DROP TABLE IF EXISTS `owners`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `owners` (
   `id` varchar(36) NOT NULL,
-  `name` varchar(31) NOT NULL,
+  `name` varchar(32) NOT NULL,
   `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
