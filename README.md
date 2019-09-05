@@ -31,3 +31,4 @@ Credits
 * Homepage: https://www.slsr.org
 * Author: Vivien Richter <vivien@slsr.org>
 * Git repository: https://github.com/sl-shinto-shrine-register/v1.git
+* Badge template: https://gist.github.com/vivi90/a9749fe1f8381b6083cea68b2e97f975
