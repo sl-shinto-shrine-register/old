@@ -1,21 +1,22 @@
-* {
-	margin: 0;
-	padding: 0;
-}
-
 body {
-	margin: 1em;
-	text-align: center;
-	font-size: 5em;
+	padding: 1em;
 	background-color: #FC6;
+	text-align: center;
 }
 
 h3 {
+	margin-top: 0em;
 	margin-bottom: 0.5em;
+	font-size: 4em;
+	text-align: center;
+	text-transform: capitalize;
 }
 
 p {
-	margin-top: 1em;
+	text-align: justify;
+	font-size: 1.5em;
+	line-height: 1.25em;
+	word-wrap: break-word;
 }
 
 .owner span {
@@ -24,14 +25,22 @@ p {
 
 .teleport {
 	display: inline-block;
-	width: 6em;
-	padding: 0.5em;
-	margin-top: 1em;
-	margin-bottom: 4em;
+	font-size: 4em;
+	padding-left: 2em;
+	padding-right: 2em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	margin: 0.5em;
 	font-weight: bold;
 	text-align: center;
 	background-color: #7F5417;
 	color: #ffffcc;
 	text-decoration: none;
 	border: solid 0.1em;
+}
+
+article {
+	background-color: #ffd787;
+	padding: 1em;
+	margin-bottom: 3em;
 }
